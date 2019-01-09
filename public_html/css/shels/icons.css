@@ -1,0 +1,118 @@
+.h_icon-screen {
+    background:url('icons/16x16/screen.png') no-repeat center center;
+    background-color: transparent;
+}
+
+.h_icon-screen_no {
+    background:url('icons/16x16/screen-no.png') no-repeat center center;
+    background-color: transparent;
+}
+
+.h_icon-snapirovanie {
+    background:url('icons/16x16/edit-add.png') no-repeat center center;
+    background-color: transparent;
+}
+
+.h_icon-snapirovanie_no {
+    background:url('icons/16x16/edit-add-no.png') no-repeat center center;
+    background-color: transparent;
+}
+
+.h_icon-edit-add {
+    background:url('icons/16x16/edit.png') no-repeat center center;
+    background-color: transparent;
+}
+
+.h_icon-edit-add_no {
+    background:url('icons/16x16/edit-no.png') no-repeat center center;
+    background-color: transparent;
+}
+
+.h_icon_settings {
+    background-image: url(icons.png);
+    background-position: -91px -1967px;
+    background-repeat: no-repeat;
+}
+
+.h_icon_open_group {
+    background-image: url(icons.png);
+    background-position: -53px -173px;
+    background-repeat: no-repeat;
+}
+
+.h_icon_request {
+    background-image: url(icons.png);
+    background-position: -910px -1343px;
+    background-repeat: no-repeat;
+}
+.h_icon_user_exclude {
+    background-image: url(icons.png);
+    background-position: -871px -56px;
+    background-repeat: no-repeat;
+}
+.h_icon_user_include {
+    background-image: url(icons.png);
+    background-position: -832px -56px;
+    background-repeat: no-repeat;
+}
+.h_icon_project_add {
+    background-image: url(icons.png);
+    background-position: -637px -1616px;
+    background-repeat: no-repeat;
+}
+.h_icon_project_remove {
+    background-image: url(icons.png);
+    background-position: -676px -1616px;
+    background-repeat: no-repeat;
+}
+.h_icon_layer_add {
+    background-image: url(icons.png);
+    background-position: -247px -1538px;
+    background-repeat: no-repeat;
+}
+.h_icon_layer_remove {
+    background-image: url(icons.png);
+    background-position: -286px -1538px;
+    background-repeat: no-repeat;
+}
+.h_icon_onMap {
+    background-image: url(icons.png);
+    background-position: -364px -171px;
+    background-repeat: no-repeat;
+}
+.h_icon_removeObject {
+    background-image: url(icons.png);
+    background-position: -286px -1538px;
+    background-repeat: no-repeat;
+}
+.h_icon_injectObject {
+    background-image: url(icons.png);
+    background-position: -325px -2279px;
+    background-repeat: no-repeat;
+}
+.h_icon_tag_remove {
+    background-image: url(icons.png);
+    background-position: -637px -1381px;
+    background-repeat: no-repeat;
+}
+.h_icon_tag_add {
+    background-image: url(icons.png);
+    background-position: -598px -1381px;
+    background-repeat: no-repeat;
+}
+.h_icon_tag_add_in {
+    background-image: url(icons.png);
+    background-position: -754px -1381px;
+    background-repeat: no-repeat;
+}
+.h_icon_tag_edit {
+    background-image: url(icons.png);
+    background-position: -520px -173px;
+    background-repeat: no-repeat;
+}
+
+.h_icon_tag_profile {
+    background-image: url(icons.png);
+    background-position: -48px -1964px;
+    background-repeat: no-repeat;
+}

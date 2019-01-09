@@ -1,0 +1,23 @@
+.leaflet-control-history-back-interior
+{
+    border: 3px solid #999;
+    background-position: -553px -1728px;
+    padding-left:0px
+}
+
+.leaflet-control-history-back-interior:hover
+{
+
+}
+
+.leaflet-control-history-forward-interior
+{
+    border: 3px solid #999;
+    background-position: -592px -1728px;
+    padding-left:0px
+}
+
+.leaflet-control-history-forward-interior:hover
+{
+
+}

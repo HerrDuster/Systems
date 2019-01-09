@@ -1,0 +1,25 @@
+.leaflet-control-shels-view-fitBounds-interior
+{    
+    border: 3px solid #999;
+    background-position: -320px -168px;
+    padding-left:0px
+}
+
+.leaflet-control-shels-view-fitBounds-interior:hover
+{
+    background-color: #F4F4F4;
+    cursor: pointer;
+}
+
+.leaflet-control-shels-delete-fitBounds-interior
+{    
+    border: 3px solid #999;
+    background-position: -320px -168px;
+    padding-left:0px
+}
+
+.leaflet-control-shels-delete-fitBounds-interior:hover
+{
+    background-color: #F4F4F4;
+    cursor: pointer;
+}

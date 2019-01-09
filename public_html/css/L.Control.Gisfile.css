@@ -1,0 +1,557 @@
+.leaflet-control-shels-view
+{
+    padding-top: 2px;    
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+    cursor: auto;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.leaflet-control-shels-view-fitBounds-interior
+{
+    background-image: url(images/icons.png);
+    background-position: -241px -830px;
+    background-repeat: no-repeat;
+    margin-bottom: 2px;    
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+.leaflet-control-shels-view-fitBounds-interior:hover
+{
+    background-color: #F4F4F4;
+    background-position: -904px -167px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+}
+
+.leaflet-control-shels-delete-fitBounds-interior
+{
+    background-image: url(images/icons.png);
+    background-position: -904px -167px;
+    background-repeat: no-repeat;
+    margin-bottom: 2px;    
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+.leaflet-control-shels-delete-fitBounds-interior:hover
+{
+    background-image: url(images/icons2.png);
+    background-color: #F4F4F4;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.leaflet-control-shels-delete-hide
+{
+    background-color: #F4F4F4;
+    opacity: 0.5;
+}
+
+.leaflet-control-gisfile-delete-active
+{
+    background-image: url(images/icons.png);
+    background-position: -786px -362px;
+    background-repeat: no-repeat;
+    margin-bottom: 2px;    
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+.leaflet-control-gisfile-delete-active:hover
+{
+    background-image: url(images/icons3.png);
+    background-color: #F4F4F4;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.leaflet-control-navbar-save {
+    background-image: url("images/save1.png");
+}
+
+.leaflet-control-navbar-save-disabled {
+    background-image: url("images/save0.png");
+}
+
+.leaflet-control-navbar-del {
+    background-image: url("images/delete1.png");
+}
+
+.leaflet-control-navbar-del-disabled {
+    background-image: url("images/delete0.png");
+}
+
+.leaflet-control-navbar-home {
+    background-image: url("images/layers1.png");
+}
+
+.leaflet-control-navbar-home-disabled {
+    background-image: url("images/home0.png");
+} 
+
+.leaflet-control-navbar-search {
+    background-image: url("images/search1.png");
+}
+
+.leaflet-control-navbar-search-disabled {
+    background-image: url("images/search0.png");
+} 
+
+.leaflet-control-navbar-open {
+    background-image: url("images/open1.png");
+}
+
+.leaflet-control-navbar-open-disabled {
+    background-image: url("images/open0.png");
+} 
+
+.leaflet-control-navbar-select {
+    background-image: url(images/select0.png);
+    /*background-position: -32px -2px;*/
+}
+
+.leaflet-control-navbar-select.active {
+    background-image: url(images/select1.png);
+    /*background-position: -62px -2px;*/
+}
+
+.leaflet-control-navbar-snap-point {
+    background-image: url(images/snappoint0.png);
+}
+
+.leaflet-control-navbar-snap-point.active {
+    background-image: url(images/snappoint1.png);
+}
+
+.leaflet-control-navbar-snap-line {
+    background-image: url(images/snapline0.png);
+}
+
+.leaflet-control-navbar-snap-line.active {
+    background-image: url(images/snapline1.png);
+}
+
+.leaflet-control-gpc-diff {
+    background-image: url(images/diff.png);
+}
+
+.leaflet-control-gpc-intersec {
+    background-image: url(images/inter.png);
+}
+
+.leaflet-control-gpc-union {
+    background-image: url(images/union.png);
+}
+
+.leaflet-control-navbar-visible {
+    background-image: url(images/view0.png);
+}
+
+.leaflet-control-navbar-visible.active {
+    background-image: url(images/view1.png);
+}
+
+.leaflet-control-navbar-info {
+    background-image: url(../img/info.png);
+}
+
+/* Locate - Compatible with Leaflet 0.6 */
+
+.leaflet-control-locate {    
+    background-image: url(images/locate0.png);
+    /*background-position: -2px -2px;*/
+}
+
+.leaflet-control-locate .leaflet-touch {
+    background-image: url(images/locate_touch.png);
+}
+
+.leaflet-control-locate.requesting {
+    background-image: url(images/spinner.gif);
+    background-position: 50% 50%;
+}
+
+.leaflet-control-locate.active {
+    background-image: url(images/locate1.png);
+    /*background-position: -32px -2px;*/
+}
+
+.leaflet-control-locate.active.following {
+    background-image: url(images/locate2.png);
+    /*background-position: -62px -2px;*/
+}
+
+/* Mouse Position */
+
+.leaflet-control-mouseposition {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px #bbb;
+  padding: 3px 5px;
+  color: #333;
+  font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+}
+
+/* User Info */
+
+.leaflet-control-userinfo {
+    background: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    /*color: white;*/
+    right: 96px;
+}
+
+.leaflet-control-userinfo a {
+    color: white;
+}
+
+/* Map Layer Control */
+
+.leaflet-control-layers-minimap {
+    /*left: 40px;
+    top: 40px;
+    position: absolute;*/
+}
+
+.leaflet-control-layers-expanded.leaflet-control-layers-minimap {
+    width: 160px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    overflow-x: hidden;
+    /*position: absolute;*/
+}
+
+.leaflet-minimap-div {
+    height: 30px;
+    width: 50px;
+    align: left;
+    /* position: relative; */
+    /*border: 4px solid #B94A48;*/
+}
+
+.leaflet-minimap-container {
+    margin-bottom: 2px;
+    position: relative;
+    display: block;
+    align: left;
+    height: 30px;
+}
+.leaflet-minimap-container .leaflet-minimap-label {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 0px 3px 0px 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: black;
+    white-space: nowrap;
+    z-index: 1000;
+}
+.leaflet-control-layers-text {
+    left: 26px;
+    top: 3px;
+    position: absolute;
+}
+.leaflet-control-layers-list {
+    margin-bottom: 0px;
+}
+.leaflet-minimap-container .leaflet-minimap-label .leaflet-control-layers-selector {
+    top: 3px;
+}
+.leaflet-minimap {
+    width: 100%;
+    height: 100%;
+}
+.leaflet-minimap-container.leaflet-minimap-hidden {
+    display: none;
+}
+.leaflet-control-layers-toggle{ 
+    width:auto;
+    height: 24px;
+    text-decoration:none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    padding-left: 40px;
+    background-position: left;
+    background-position-x: 5px;
+    text-shadow: 0 1px 0 #fff;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.leaflet-popup-content-body {
+    width: 360px;
+}
+
+.leaflet-popup-content li {
+    margin-left: 130px;
+    list-style-type: none;
+}
+.leaflet-popup-content li div {
+    position: absolute;
+    left: 5px;
+    background: none;
+    color: black;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.bottom-r-content {
+    position: absolute;
+    right: 0px; 
+    bottom: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    width: 360px;
+    height: 120px;
+}
+
+.bottom-l-content {
+    position: absolute;
+    left: 0px; 
+    bottom: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    width: 600px;
+    height: 120px;
+}
+
+.bottom-v-content {
+    position: absolute;
+    left: 0px; 
+    bottom: 120px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    width: 600px;
+    height: 390px;    
+}
+
+.bottom-t-content {
+    position: absolute;
+    left: 50px; 
+    top: 10px; 
+    padding: 5px;
+    padding-left: 10px;
+    width: 360px;
+    height: 30px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;    
+}
+
+.bottom-p-content {
+    position: absolute;
+    left: 50px; 
+    top: 10px; 
+    padding: 5px;
+    padding-left: 10px;
+    width: 460px;
+    height: 30px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;    
+}
+
+.bottom-f-content {
+    position: absolute;
+    right: 0px; 
+    bottom: 120px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+    width: 360px;
+    height: 390px;
+    overflow-y: scroll;
+}
+
+.list-images {
+    background-color: #737373; 
+    margin-left: 0px; 
+    width: 100px; 
+    height: 120px; 
+    position: relative; 
+    margin-right: 3px; 
+    margin-bottom: 3px;
+}
+
+.list-images-file {
+    position: absolute; 
+    left: 5px; 
+    top: 5px; 
+    height: 98px; 
+    width: 98px; 
+    background: #e6e6e6; 
+    text-align: center;
+}
+
+.list-images-file-img {
+    max-width: 98px; 
+    max-height: 98px;
+}
+
+.list-images-box {
+    position: absolute; 
+    left: 0px; 
+    top: 85px; 
+    height: 20px; 
+    width: 105px; 
+    background: #737373; 
+    opacity: 0.7; 
+    filter: alpha(Opacity=70);
+}
+
+.list-images-link {
+    position: absolute; 
+    left: 0px; 
+    top: 83px; 
+    height: 20px; 
+    width: 100px; 
+    cursor: pointer;
+}
+
+.list-images-link-txt {
+    color: whitesmoke; 
+    font-size: smaller; 
+    margin-left: 8px;
+}
+
+.list-images-panel {
+    position: absolute; 
+    left: 0px; 
+    top: 103px; 
+    height: 20px; 
+    width: 100px;
+}
+
+/* mobile styles */
+@media {
+    html, body {
+        padding: 0px;
+        margin: 0px;
+    } 
+    .leaflet-retina .leaflet-control-userinfo {
+        top: 2px;
+        right: 65px;
+    }
+    .leaflet-control-layers-minimap {
+        /*margin-left: 5px;*/
+        left: 0px;
+    }
+    .leaflet-control-layers-toggle {
+        margin-left: 5px;
+        margin-top: 0px;
+        /*max-height: 24px;*/
+    }
+	.leaflet-touch .leaflet-control-layers-toggle {
+        /*width: 0px;
+        height: 24px;*/
+    }
+}
+
+.leaflet-label-overlay {
+    font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    position: absolute;
+    text-align: center;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.7);
+    padding-left: 2px;
+    padding-right: 2px;
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;                
+}
+
+/* ================================================================== */
+/* ToolTip styles
+/* ================================================================== */
+
+.leaflet-tooltip {
+    background: rgb(54, 54, 54);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid transparent;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
+    color: #fff;
+    font: 12px/18px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-top: -21px;
+    padding: 4px 8px;
+    position: absolute;
+    visibility: hidden;
+    /* white-space: nowrap; */
+    z-index: 6;
+}
+
+.leaflet-tooltip:before {
+    border-right: 6px solid black;
+    border-right-color: rgba(0, 0, 0, 0.5);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: -7px;
+}
+
+.leaflet-tooltip-single {
+    margin-top: -12px
+}
+
+.label {
+    font-size: 100%;
+    color: black;
+}
+
+.trlable {
+    min-height:20px;
+    width:120px;
+    vertical-align:text-top;
+}
+
+.popup-row {
+    min-height:20px
+} 
+
+.popup-label {
+    width:50%;
+    font-weight: bold;
+} 
+
+.popup-value {
+    padding-left:10px
+} 

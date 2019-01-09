@@ -1,0 +1,23 @@
+.leaflet-control-shels-view-fitBounds-interior
+{
+    background-image: url(icons.png);
+    background-position: -358px -167px;
+    background-repeat: no-repeat;
+    margin-bottom: 2px;    
+    width: 28px;
+    height: 28px;
+    display: block;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+    cursor: auto;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.leaflet-control-shels-view-fitBounds-interior:hover
+{
+    background-color: #F4F4F4;
+    cursor: pointer;
+}

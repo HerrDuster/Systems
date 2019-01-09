@@ -1,0 +1,1195 @@
+<html>
+    <head>
+        <!-- START META -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="copyright" content="©2018 GISFile">
+        <meta name="date" content="2017-07-15T12:00:00+00:00">    
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+        <link type="text/css" href="css/jquery/jquery-easyui/cupertino/easyui.css" rel="stylesheet">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/bootstrap/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/bootstrap/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/bootstrap/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="img/bootstrap/apple-touch-icon-57-precomposed.png">
+        <link rel="stylesheet" media="screen" href="css/bootstrap/bootstrap.min.css">
+
+        <link type="text/css" href="css/shels/bsicons.css" rel="stylesheet">	
+        <script type="text/javascript" src="js/jquery/jquery-1.8.0.min.js"></script>    
+        <script type="text/javascript" src="js/jquery/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+        <link type="text/css" href="css/meta.css" rel="stylesheet">
+        <!-- END META -->
+        
+        <!--META name=keywords content="${keywords_system}">
+        <META name=description content="${description_system}">
+        <title>${title_system}</title-->
+        
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="css/leaflet.ie.css" /><![endif]-->
+        <script src="js/leaflet.min.js"></script>
+        
+        <script src="//maps.google.com/maps/api/js?v=3.2&sensor=false&language=RU" type="text/javascript"></script>	
+        <script src="js/Google.js" type="text/javascript"></script>
+        <!--script src="//api-maps.yandex.ru/2.0/?load=package.map&lang=RU" type="text/javascript"></script>	
+        <script src="js/Yandex.js" type="text/javascript"></script-->
+        <script src="js/Bing.js"></script>
+
+        <link type="text/css" href="css/L.Control.Gisfile.css" rel="stylesheet" />                
+        <!--[if lte IE 9]><link rel="stylesheet" href="css/L.Control.Gisfile.ie.css" /><![endif]-->
+        <script src="js/L.Control.Gisfile.js"></script>
+        
+        <link type="text/css" href="css/leaflet.contextmenu.css" rel="stylesheet" />
+        <script src="js/leaflet.contextmenu.js"></script>
+        
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <script src="js/leaflet.gisfile.js"></script>
+        <style>.datagrid-row-selected a { color: white}</style>
+        
+        <link type="text/css" href="css/sysnet.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container container-sysnet">
+
+            <div class="header-main">
+
+                <div class="header-logo clearfix">
+                    <div class="header-left">
+                        <a href ="https://agrortk.com.ua/index.html"><img src="img/systemnet_rtk.png" alt="" class="img-responsive"></a>
+                    </div>
+                    <div class="header-right">
+                        <a href ="http://systemnet.com.ua"><img src="img/systemnet_logo.png" alt="" class="img-responsive"></a>
+                    </div>
+                </div>
+
+                <div class="header-logo clearfix">
+                    <div class="brand" style="float: right; padding-right: 0px; margin-top:2px;">
+
+                        <div class="badge" style="margin-right:10px;">
+                        </div>
+                    </div>
+
+
+                    <div class="navbar" style="margin-bottom: 0px;position: relative;">
+                        <div class="brand" style="float: right;  height: 25px; padding-right: 5px">
+                            <div class="nav" style="float: right;">
+                                <a class="dropdown-toggle" data-toggle="dropdown" title="User">
+                                    <img src="" width="23px" height="23px" style="max-width: 23px; max-height: 23px" />
+                                </a>
+                                <ul class="dropdown-menu" style="font-size: 14px; text-shadow: none">
+                                    <li class="active">
+                                        <a href="">Finance</a>
+                                    </li>
+                                    <li>
+                                    </li>
+                                </ul>
+                            </div>                
+                        </div>        
+                    </div>
+
+                </div>
+
+                <div class="clearfix">
+                    <div class="bar-left"></div>
+                    <div class="bar-right"></div>
+                </div>
+
+            </div>
+
+            <div class="navbar" style="margin-bottom: 0px;position: relative;">
+
+                <div class="container">
+
+                    <div class="navbar-header">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#sysNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse nav-collapse nav-sysnet" id="sysNavbar">
+
+                        <ul class="nav navbar-nav">
+
+                            <li class="active">
+                                <a href="home.htm">Оборудование</a>
+                                <div class="bar"></div>
+                            </li>
+                            <li>
+                                <a href="index.html">Карта</a>
+                                <div class="bar"></div>
+                            </li>
+                            <li>
+                                <a href="//gnss.org.ua/SBC">Подписки</a>
+                                <div class="bar"></div>
+                            </li>
+                            <li>
+                                <a href="//gnss.org.ua/spiderweb">Покрытие</a>
+                                <div class="bar"></div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container preagri-container">
+            
+            <div class="row" style="padding-top: 20px">
+                <div class="span12" style="height: 30px;">
+                    <div class="span2">Пользователь:</div>
+                    <div class="span3"><b><p id="fcName"></p></b></div>
+
+                    <div class="span2">Представитель:</div>
+                    <div class="span3"><b><p id="fcFullName"></p></b></div>
+                </div>
+                <div class="span12" style="height: 30px;">
+                    <div class="span2">Компания:</div>
+                    <div class="span3"><b><p id="fcCompany"></p></b></div>
+                </div>
+                <!--div class="span12" style="height: 30px;">
+                    <div class="span2">Состояние:</div>
+                    <div class="span3"><b><p id="fcStatus"></p></b></div>
+
+                    <div class="span2">Компания:</div>
+                    <div class="span3"><b><p id="fcCompany"></p></b></div>
+                </div>
+                <div class="span12" style="height: 30px;">
+                    <div class="span2">Отключено, минут:</div>
+                    <div class="span3"><b><p id="fcDisconnected"></p></b></div>
+
+                    <div class="span2">Скорость:</div>
+                    <div class="span3"><b><p id="fcSpeed"></p></b></div>
+                </div-->
+            </div>
+            
+            <div class="row">
+                <div class="span2">
+                    <table id="dgFiles" class="easyui-datagrid" style="width:190px;height:600px" 
+                           data-options="rownumbers:false,singleSelect:true,autoRowHeight:false,pageSize:100,remoteSort:false">
+                        <thead>
+                            <tr>
+                                <th data-options="field:'year',align:'left',width:50,sortable:true"><center>Год</center></th>
+                                <th data-options="field:'month',align:'left',width:50,sortable:true"><center>Месяц</center></th>
+                                <th data-options="field:'day',align:'left',width:50,sortable:true"><center>День</center></th>
+                                <!--th data-options="field:'links',align:'left',width:100,formatter:formatUrl"><center></center></th-->
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                        
+                <div class="span10">
+                    <!--div class="tabbable">
+                        <ul class="nav nav-tabs" id="aTab">
+                        <li class="active"><a href="#rtk" id="tabRtk" data-toggle="tab">Точность</a></li>
+                        <li><a href="#speed" id="tabSpeed" data-toggle="tab">Скорость</a></li>
+                        <li><a href="#time" id="tabTime" data-toggle="tab">Время</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="rtk">
+                            <div id="map" style="width: 100%; height: 300px"></div>
+                        </div>
+                        <div class="tab-pane" id="speed">
+                            <div id="map2" style="width: 100%; height: 300px"></div>
+                        </div>
+                        <div class="tab-pane" id="time">
+                            <div id="map3" style="width: 100%; height: 300px"></div>
+                        </div>
+                      </div>
+                    </div--!>
+                    <div id="map" style="width: 100%; height: 400px"></div>
+                    
+                    <div id="report" style="width: 100%; height: auto"></div>
+                    
+                    <div id="info" style="width: 100%; height: 300px">
+                        <!--center><img id="spinner" src='css/images/spinner-ball.gif' style="max-width: 100px"></center-->
+                        <center><img id="spinner" src='css/images/spinner-loading.gif' style="max-width: 100px"></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+        <script type="text/javascript">
+            var apiurl = '//gisfile.com/'; // The link of Node API
+            //var apiurl = 'http://localhost:8080/gisfile/';
+            var spider = '1'; // The list of users id
+            
+            var map = L.map( 'map'); //.setView([${x},${y}],${z});
+            
+            var BlueIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/images/marker.png', 
+                                                              iconSize: [36, 36], iconAnchor: [ 36/2, 36/2], popupAnchor: [0, -36 +36/2], shadowSize: [0,0]}});
+                                                      
+            var GreyIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-grey.png', 
+                                                              iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var GreenIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-green.png', 
+                                                               iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var RedIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-red.png', 
+                                                             iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var YellowIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-yellow.png', 
+                                                             iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var NetIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-net.png', 
+                                                             iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var StartIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-start.png', 
+                                                              iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var FinishIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-finish.png', 
+                                                              iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var blueIcon = new BlueIcon();
+            var redIcon = new RedIcon();
+            var greenIcon = new GreenIcon();
+            var yellowIcon = new YellowIcon();
+            var greyIcon = new GreyIcon();
+            var netIcon = new NetIcon();
+            var startIcon = new StartIcon();
+            var finishIcon = new FinishIcon();
+
+            var osm, ocm, ggr, ggs, ggh, ggt, cad, cgr, m100, sat, ynd, yns, ynh, ynp, ynt, jobData, sysnet, sysdata, legend, overlayLayers;
+            var rows = {}, hubid, rover = 'Машина';
+            var drawnMarker = new L.FeatureGroup();
+            var drawnRtk = new L.FeatureGroup();
+            var drawnSpeed = new L.FeatureGroup();
+            var drawnTime = new L.FeatureGroup();
+            
+            $(function()
+            {
+                $('#dgFiles').datagrid({
+                    onDblClickCell: function(index,field,value){
+                        //usersEdit();
+                    },
+                    onClickRow: function(index,data){
+                        getJobInfo(data);
+                    }
+                });
+
+                osm = new L.TileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '<a rel="nofollow" href="http://gisfile.com" title="Создание и публикация интерактивных карт">GISFile</a>'});
+                //ocm = new L.tileLayer( '//{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {maxZoom: 18});
+                //ocm = new L.tileLayer( '//{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {maxZoom: 18});
+                ocm = new L.tileLayer( '//{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {maxZoom: 18});
+                map.addLayer(osm);
+                
+                ggr = new L.Google( 'ROADMAP');
+                ggs = new L.Google( 'SATELLITE');
+                ggh = new L.Google( 'HYBRID');
+                ggt = new L.Google( 'TERRAIN');
+
+                //'Cad 100000': m100, 'Cad Satellite': sat, 'Yandex Map':ynd, 'Yandex Satellite': yns, 'Yandex Hybrid': ynh, 'Yandex Public': ynp
+                var baseLayers = {'OpenStreetMap':osm, 'Google Road':ggr, 'Google Satellite':ggs, 'Google Hybrid':ggh};
+                overlayLayers = {'Точность':drawnRtk,'Скорость':drawnSpeed,'Время':drawnTime};
+                
+                control = L.control.layers.minimap( baseLayers, overlayLayers, {position: 'topright', collapsed: true}).addTo(map);                
+
+                L.control.mousePosition().addTo(map);
+
+                getFieldComputer();
+                getListLogs();
+                
+                map.addLayer(drawnMarker);
+                map.addLayer(drawnRtk);
+                //map.addLayer(drawnSpeed);
+                //map.addLayer(drawnTime);
+                
+                control._overlaysList.onchange = function (e) { 
+                    if (e.target && e.target.labels && e.target.labels.length > 0) { 
+                        var s = String( e.target.labels[0].innerText).trim();
+                        var i = 1;
+                        for (var l in overlayLayers) {
+                            if (l != s && e.target.checked) {
+                                if (i == 1 && map.hasLayer(drawnRtk)) map.removeLayer(drawnRtk);
+                                if (i == 2 && map.hasLayer(drawnSpeed)) map.removeLayer(drawnSpeed);
+                                if (i == 3 && map.hasLayer(drawnTime)) map.removeLayer(drawnTime);
+                            }
+                            if (l == s) { if(e.target.checked) drawLegeng(i); else hideLegeng(); };
+                            i++;
+                        }
+                    }
+                };                
+                
+                if (L.GISFileAPI) 
+                {
+                    sysnet = new L.GISFileAPI({
+                        layer : 'rtknet',
+                        style: function(feature) {
+                        }, 
+                        onEachFeature: function(feature, layer) 
+                        {
+                            var items = feature.properties; 
+                            var popupContent = items.name;
+                            layer.bindPopup(popupContent);
+                            
+                            var type = layer.feature.geometry.type;
+                            if (type == 'Marker' || type == 'MultiPoint' || type == 'Point') 
+                            {
+                                if (layer._layers)
+                                   layer._layers[ layer._leaflet_id -1].setIcon( netIcon);
+                                else
+                                   layer.setIcon( netIcon);
+                            }                        
+                        }
+                    });        
+                    sysnet.addTo(map);
+                }
+
+                legend = L.control({position: 'bottomleft'});
+
+                legend.onAdd = function (map) {
+                    var div = L.DomUtil.create('div', 'leaflet-control-attribution');
+                    div.id = 'form';
+                    div.style.height = '30px';
+                    div.style.margin = '10px';
+                    div.style.position = 'absolut';
+                    
+                    var s = '';
+
+                    div.innerHTML = 
+                        '<div class="options" style="width:\'100%\';height:\'100%\';padding-top:5px">'+
+                        '   <b><label id="lblName">Легенда: </label></b>' +
+                        s +        
+                        '   <canvas height=\'30px\' width=\'100px\' id=\'smLegend\'>Обновите браузер</canvas>'+
+                        '</div>';
+                    
+                    L.DomEvent.disableClickPropagation(div);
+                    return div;
+                };
+
+                legend.addTo(map);
+                
+                map.invalidateSize();
+            })
+
+            $(document).ready(function() {
+                $(window).resize(function() {
+                    $('.easyui-layout').layout('resize');
+                    $('.easyui-panel').panel('resize');
+                });
+            });                    
+
+            // System Solutions
+
+            function getFieldComputer() {
+                var url = apiurl +'system/group/users';
+                
+                if (spider.length > 0)
+                    url = apiurl +'system/user/' +spider +'/list';
+                
+                jQuery.ajax({
+                    url: url,
+                    type: 'GET',
+                    //contentType: "application/json; charset=windows-1251", //utf-8
+                    dataType: 'text', //'json'
+                    success: function(response) 
+                    {
+                        if (response) 
+                        {
+                            var data = JSON.parse( response);
+
+                            for (var d in data) 
+                            {
+                                var rec = data[d];
+                                
+                                if (rec.users) {                                    
+                                    for (var u in rec.users) 
+                                    {
+                                        var user = rec.users[u]; 
+
+                                        if (user.username == rover) {
+                                            //console.log( user);
+                                            if (user.username) $('#fcName').text( user.username);
+                                            if (user.status)   $('#fcStatus').text( user.status);
+                                            
+                                            var value = user.firstname;
+                                            var note = user.lastname;
+                                            if (note && note.length > 0) value += " " +note;
+                                            
+                                            $('#fcFullName').text( value);
+                                            if (user.companyid) $('#fcCompany').text( user.companyid);
+                                            if (user.disconnecttime) $('#fcDisconnected').text( user.disconnecttime);
+                                            
+                                            getCurrentLocation();
+                                        }
+                                    }
+                                }
+                                
+                                if (spider.length > 0) {
+                                    var user = rec; 
+
+                                    if (user.username == rover) {
+                                        //console.log( user);
+                                        if (user.username) $('#fcName').text( user.username);
+                                        if (user.status)   $('#fcStatus').text( user.status);
+
+                                        var value = user.firstname;
+                                        var note = user.lastname;
+                                        if (note && note.length > 0) value += " " +note;
+
+                                        $('#fcFullName').text( value);
+                                        if (user.companyid) $('#fcCompany').text( user.companyid);
+                                        if (user.disconnecttime) $('#fcDisconnected').text( user.disconnecttime);
+
+                                        getCurrentLocation();
+                                    }
+                                }
+                            }
+                        }    
+                    }
+                });                           
+            }
+
+            function getCurrentLocation() {
+                jQuery.ajax({
+                    url: apiurl +'system/user/' +rover +'/connections?limit=1', 
+                    type: 'GET',
+                    //contentType: "application/json; charset=windows-1251", //utf-8
+                    dataType: 'text', //'json'
+                    success: function(response) 
+                    {
+                        if (response) 
+                        {
+                            var data = JSON.parse( response);
+                            
+                            for (var p in data)  {
+                                var props = data[p];
+
+                                if (props.id && props.latitude && props.longitude && props.time) {
+                                    var icon = greyIcon;
+                                    var report = props;
+
+                                    if (report.positionfix && report.time) {
+                                        var date = new Date( report.time); 
+                                        var now = new Date();
+
+                                        var days = now.getDate() -date.getDate();
+                                        var hours = now.getHours() -date.getHours();
+                                        var fix = report.positionfix;
+
+                                        if (days == 0 && hours == 0) {
+                                            if (fix > 3) {
+                                                icon = greenIcon;
+                                            } else if (fix == 2) {    
+                                                icon = yellowIcon;
+                                            } else {
+                                                icon = redIcon;
+                                            }
+                                        }
+                                    }            
+                                    
+                                    //var lat = props.latitude *180/Math.PI, lon = props.longitude *180/Math.PI;
+                                    var lat = props.latitude, lon = props.longitude;
+                                    
+                                    L.marker([lat, lon], {icon: icon, opacity: 0.9}).addTo( map);
+                                    map.setView([lat, lon], map.getZoom());
+                                    
+                                    if (props.roverusercompany) $('#fcCompany').text( props.roverusercompany);
+                                }
+                            }
+                        }    
+                    }
+                });                           
+            }
+            
+            function getListLogs() {
+                jQuery.ajax({
+                    url: apiurl +'system/gps/' +rover +'/list', 
+                    type: 'GET',
+                    //contentType: "application/json; charset=windows-1251", //utf-8
+                    dataType: 'text', //'json'
+                    success: function(response) 
+                    {
+                        if (response) {
+                            var data = JSON.parse( response);
+                            
+                            if (data.data) {
+                                convertFeature( rows, data.data);
+                                $('#dgFiles').datagrid('loadData', rows);
+                            }
+                        }
+                        
+                        $("#spinner").hide();
+                    }
+                });                           
+            }
+                
+            function getJobInfo(row) {
+                if (row && row.year && row.month && row.day) {
+                    var data = row.info;
+                    
+                    if (!data) {
+                        var date = row.year +row.month +row.day;
+                        var time = row.day +'.' +row.month +'.' +row.year;
+                        jQuery.ajax({
+                            url: apiurl +'system/gps/' +rover +'/' +date +'/logs',
+                            type: 'GET',
+                            //contentType: "application/json; charset=windows-1251", //utf-8
+                            dataType: 'text', //'json'
+                            success: function(response) 
+                            {
+                                if (response) 
+                                {
+                                    var data = jobData = JSON.parse( response);
+                                    row.info = data;
+                                    showJobInfo( date, time, data);
+                                    getReport( time, data);
+                                }    
+                            }
+                        });                           
+                    } else {
+                        showJobInfo( date, time, data);
+                    }
+                }
+            }
+
+            function showJobInfo( date, time, row) {
+                var str = "";
+            
+                str += '<div style="height:30px; padding: 10px">' +
+                       '<a onclick="saveKml(\'' +date +'\')" target="_blank" class="btn btn-info" style="margin-right:5px">Скачать KML</a>' +
+                       //'<a onclick="preView(\'' +time +'\')" target="_blank" class="btn btn-success" style="margin-right:5px">Печать отчёта</a>' +
+                       '<a onclick="printPdf(\'' +date +'\')" target="_blank" class="btn btn-success" style="margin-right:5px">Открыть PDF отчёт</a>' +
+                       '</div>';
+                //str += '<table class="table table-striped">';
+                var icon = greyIcon, start = undefined, end = undefined, prior = undefined, pdata, i = 1;
+                drawnMarker.clearLayers();
+                drawnRtk.clearLayers();
+                drawnSpeed.clearLayers();
+                drawnTime.clearLayers();
+
+                //if (date) {
+                //    str += '<tr><td>Дата:</td><td><b>' +date +'</b></td></td></tr>';
+                //}
+
+                for (var d in row.data) {
+                    var data = row.data[ d];
+
+                    //if (data.RoverUserName) {
+                    //    str += '<tr><td>Пользователь:</td><td><b>' +data.RoverUserName +'</b></td></td></tr>';
+                    //}
+
+                    //if (data.StartTime && data.EndTime)
+                    //    str += '<tr><td>Файл ' +i +':</td><td><b>' +data.StartTime +' - ' +data.EndTime +'</b></td></td></tr>';
+
+                    //if (data.FirstDistance)
+                    //    str += '<tr><td>Растояние 1:</td><td><b>' +data.FirstDistance +'</b></td></td></tr>';
+
+                    //if (data.LastDistance)
+                    //    str += '<tr><td>Растояние 2:</td><td><b>' +data.LastDistance +'</b></td></td></tr>';
+                    
+                    if (data.Connections) {
+                        for (var c in data.Connections) {
+                            var loc = data.Connections[c];
+                            //var lat = loc.Lat *180/Math.PI, lon = loc.Lon *180/Math.PI;
+                            var lat = loc.Lat, lon = loc.Lon, fix = loc.Fix;
+                            
+                            if (lat != 0 && lon != 0 && fix > 0) {
+                                if (start == undefined) {
+                                    start = [lat, lon];
+                                }
+
+                                end = [lat, lon];
+                            
+                                if (prior != undefined) {
+                                    var d = [{"type":"Feature","geometry":{"type":"LineString","coordinates":[prior,[lon, lat]]},"prior": pdata,"properties": loc}];
+                                    drawTrack(d,1,drawnRtk);
+                                    drawTrack(d,2,drawnSpeed);
+                                    drawTrack(d,3,drawnTime);
+                                }
+                                
+                                prior = [lon, lat];
+                                pdata = loc;
+                            }
+                        }
+                    }
+                    
+                    prior = undefined;                    
+                    i++;
+                }
+
+                if (start != undefined) {
+                    L.marker(start, {icon: startIcon, opacity: 0.9}).addTo( drawnMarker);
+                }
+                
+                if (end != undefined) {
+                    L.marker(end, {icon: finishIcon, opacity: 0.9}).addTo( drawnMarker);
+                    //map.setView(end, map.getZoom());
+                }                
+
+                //str += '</table>';
+
+                $('#info').html( str);
+                map.fitBounds(drawnRtk.getBounds());
+                
+                if (map.hasLayer(drawnRtk)) drawLegeng(1);
+                else if (map.hasLayer(drawnSpeed)) drawLegeng(2);
+                else if (map.hasLayer(drawnTime)) drawLegeng(3);
+                else hideLegeng();
+            }
+            
+            function drawTrack(d,t,l) {
+                var ok = false;
+                var props = d[0].properties;
+                var prior = d[0].prior;
+                var s = {weight: 2, opacity: 0.5, color: 'blue'};
+                
+                // RTK
+
+                if (t == 1 && props && props.Fix && props.Fix > 0) {
+                    if (props.Fix > 3) s.color = 'green';
+                    else if (props.Fix == 2) s.color = 'orange';
+                    //else if (props.positionfix <= 0) s.color = 'grey';
+                    else s.color = 'red';
+                    ok = true;
+                }
+                
+                // Speed
+
+                if (t == 2 && props && props.Lat && props.Lon && props.Time && prior && prior.Lat && prior.Lon && prior.Time) {
+                    var MS = (new Date(props.Time).getTime() -new Date(prior.Time).getTime());
+                    var p1 = new L.latLng( prior.Lat, prior.Lon);
+                    var p2 = new L.latLng( props.Lat, props.Lon);
+                    var DISTANCE = p2.distanceTo( p1);
+                    var hours = MS /1000 /60 /60; //moment.duration(MS).hours();
+                    var speed = (hours>0)?(DISTANCE / 1000 / hours).toFixed(2):0;
+                    props.speed = speed;
+                    s.color = speedColor(speed);
+                    ok = true;
+                }
+
+                // Time
+
+                if (t == 3 && props && props.Time) {
+                    var hour = new Date(props.Time).getHours();
+                    s.color = hourColor(hour);
+                    ok = true;
+                }
+
+                if (ok) {
+                    var layer = L.geoJson( d, {style: s, onEachFeature: function (feature, layer) {
+                        var items = getTitles( feature.properties);
+
+                        var popupContent = "<div class='modal-body' style='width:260px'>" +
+                                           "<strong>Values:</strong><br>" + 
+                                           "<p>" +items.join( "") +"</p>" +
+                                           "</div>";
+
+                        if (feature.properties && feature.properties.popupContent) {
+                            layer.bindPopup(feature.properties.popupContent);
+                        }
+
+                        layer.bindPopup(popupContent);
+                    }});
+
+                    l.addLayer(layer);
+                }
+            }    
+
+            cspeed = [{v:0,c:'grey'},{v:10,c:'green'},{v:20,c:'orange'},{v:99,c:'red'}];
+            //cspeed = [{v:0.5,c:'#008001'},{v:0.9,c:'#229901'},{v:1.3,c:'#50B100'},{v:1.7,c:'#88CB00'},
+            //          {v:1.7,c:'#88CB00'},{v:2.1,c:'#CBE500'},{v:2.5,c:'#F1D600'},{v:2.9,c:'#F2A000'},
+            //          {v:3.3,c:'#F26B00'},{v:3.7,c:'#F03500'},{v:99,c:'#F00001'}];
+
+            function speedColor(I) {
+                for (var c in cspeed) {
+                    var v = cspeed[c];
+                    if (I <= v.v) return v.c;
+                }                
+            }
+
+            chour = //[{v:0,c:'#38681E'},
+                    [{v:1,c:'#008001'},{v:2,c:'#229901'},{v:3,c:'#50B100'},{v:4,c:'#88CB00'},
+                     {v:5,c:'#88CB00'},{v:6,c:'#CBE500'},{v:7,c:'#F1D600'},{v:8,c:'#F2A000'},
+                     {v:9,c:'#F26B00'},{v:10,c:'#F03500'},{v:11,c:'#F00001'},{v:12,c:'#AD2814'}];
+            /*
+            chour = [{v:1,c:'#97FE00'},{v:2,c:'#738325'},{v:3,c:'#02DC00'},{v:4,c:'#7DBA5A'},{v:5,c:'#37A95E'},{v:6,c:'#3DA900'},
+                     {v:7,c:'#00FF00'},{v:8,c:'#E3FE5F'},{v:9,c:'#61FE60'},{v:10,c:'#00E09C'},{v:11,c:'#B2D600'},{v:12,c:'#8EFE4F'},
+                     {v:13,c:'#4A5900'},{v:14,c:'#D3FE00'},{v:15,c:'#50FE8C'},{v:16,c:'#A6B655'},{v:17,c:'#C3FFC3'},{v:18,c:'#48762E'},
+                     {v:19,c:'#016400'},{v:20,c:'#7F8755'},{v:21,c:'#908700'},{v:22,c:'#DFD200'},{v:23,c:'#B1BA84'},{v:24,c:'#EEEC60'}];            
+            */         
+            function hourColor(I) {
+                if (I >= chour.length) I = I -chour.length;
+                
+                for (var c in chour) {
+                    var v = chour[c];
+                    if (v.v == I) return v.c;
+                }                
+                return '#AD2814';
+            }
+            
+            function myRGB( v) {
+                return "#" +v;
+            }
+            
+            function hideLegeng() {
+                $('#form').hide();
+            }
+            
+            function drawLegeng(t) {
+                var legend = document.getElementById("smLegend");
+                $('#form').show();
+                
+                if (legend) 
+                {
+                    colors=[];
+                    
+                    if (t == 1) {
+                        colors.push({"v": "навигационая",  "c": "red"});
+                        colors.push({"v": "дециметровая",  "c": "orange"});
+                        colors.push({"v": "сантиметровая", "c": "green"});
+                    }
+                    
+                    if (t == 2) {
+                        colors.push({"v": "0", "c": "grey"});
+                        colors.push({"v": "0 - 10", "c": "green"});
+                        colors.push({"v": "10 - 20", "c": "orange"});
+                        colors.push({"v": "> 20", "c": "red"});
+                        /*
+                        for (var c in cspeed) {
+                            var v = cspeed[c];
+                            colors.push({"f": v.v, "t": v.v, "c": v.c});
+                        }
+                        */
+                    }
+                    
+                    if (t == 3) {
+                        for (var c in chour) {
+                            var v = chour[c];
+                            colors.push({"f": v.v, "t": v.v, "c": v.c});
+                        }
+                    }                    
+
+                    ctx = legend.getContext('2d');
+                    var count = colors.length;
+                    if (t == 3) count = count /2;
+
+                    if (count > 0) {
+                        var h = (120 +(count -4) *20).toString() +'px';
+                        $('#form').height(h);
+                    }
+
+                    legend.width  = 200;
+                    legend.height = 120 +((count -4) *20);
+                    
+                    var s = "";
+                    if (t == 1) s = 'Точность позиционирования';
+                    if (t == 2) s = 'Скорость, км/ч';
+                    if (t == 3) s = 'Время, час';
+                    if (s.length > 0) $("#lblName").text(s); else $("#lblName").text('Показатель');
+
+                    ctx.fillStyle = "#000";
+                    ctx.strokeStyle = "#000";
+                    ctx.font = "bold 10pt Arial";
+                    ctx.fillText( "Name", 10, 20);
+                    var j = 0, l = 0;
+
+                    Object.keys( colors).forEach(function(key) 
+                    {
+                        var val = colors[ key];
+                        ctx.fillStyle = val.c;
+                        ctx.fillRect( 10 +l, j, 60, 16);
+
+                        ctx.fillStyle = "#000";
+                        ctx.strokeStyle = "#000";
+                        ctx.font = "normal 10pt Arial";
+                        var s = '';
+                        
+                        if (val.v)
+                            s = val.v;
+                        else if (val.f != val.t)
+                            s = val.f.toFixed(2) +" - " +val.t.toFixed(2);
+                        else
+                            s = val.f;
+                        
+                        ctx.fillText( s, 80 +l, 14 +j);
+                        j += 20;
+                        if (t == 3 && j /20 >= count) { j = 0; l += 100; };
+                    })                                        
+                }
+            }
+            
+            function convertFeature(rows, data) 
+            {
+                if (rows.total == undefined)
+                    rows["total"] = data.length -1;
+                else 
+                    rows["total"] = rows.total +data.length -1;
+                
+                if (rows.rows == undefined)
+                    rows['rows'] = [];
+                
+                for(var i in data) {
+                    var d = data[i];
+                    if (d.ID && d.ID.length > 0) d.ID = parseInt( d.ID);
+                    rows['rows'].push( d);
+                }
+            }
+            
+            function getTitles(data) 
+            {
+                var items = [];
+                $.each( data, function( key, val ) {  
+                    items.push( key +" : " +val +"<br>" );
+                });  
+
+                return items;
+            }            
+                
+            function formatData(d) {
+                var date = d ? new Date( d) : new Date(); 
+                return date.toLocaleDateString() +' ' +date.toLocaleTimeString();
+            }
+
+            function formatUrl(val,row)
+            {
+                var date = row.year +row.month +row.day;
+                return val = ''
+            }
+                
+            function saveKml( date) {
+                var strKML = json2kml(jobData);
+                WriteToFile(strKML, rover +'_' +date +'.kml'); 
+            }
+            
+             function json2kml(data) 
+             {
+                 var kmlString = '' 
+                     + '<?xml version="1.0" encoding="UTF-8"?>\n' 
+                     + '<kml xmlns="http://www.opengis.net/kml/2.2">\n'
+                     + '\t<Document>\n'
+                     + '\t\t<Schema name="' +rover +'" id="' +rover +'">\n'
+                     + '\t\t\t<SimpleField name="Time" type="string"></SimpleField>\n'
+                     + '\t\t\t<SimpleField name="Alt" type="double"></SimpleField>\n'
+                     + '\t\t\t<SimpleField name="Fix" type="int"></SimpleField>\n'
+                     + '\t\t\t<SimpleField name="Sat" type="int"></SimpleField>\n'
+                     + '\t\t</Schema>\n'
+                     + '\t\t<name>SystemNet</name>\n';
+
+                 var row = data["data"];
+
+                 for (var prop in row) 
+                 {
+                     var descriptionNodes = "";
+                     var connectionNodes = "";
+
+                     for (var obj in row[prop]) 
+                     {
+                         var nodeJson = row[prop][obj];
+
+                         if (obj == "Connections") 
+                         {
+                             for (var n in nodeJson) 
+                             {
+                                 var schemaData = "";
+                                 var coord = "";
+                                 var lat=0, lon=0, alt=0, fix=0;
+
+                                 for (var key in nodeJson[n]) 
+                                 {
+                                     var value = nodeJson[n][key];
+                                     if (key == "Lat" || key == "Lon" || key == "Alt" || key == "Fix"){
+                                         //coord +=  value + ",";
+                                         if (key == "Lat") lat = value;
+                                         if (key == "Lon") lon = value;
+                                         if (key == "Alt") alt = value;
+                                         if (key == "Fix") fix = value;
+                                     }                                     
+                                     if (key != "Lat" && key != "Lon") {
+                                         var nodeName = "SimpleData";
+                                         schemaData += addXMLNode(nodeName, key, value, "\t\t\t\t\t");
+                                     }
+                                 }
+                                 
+                                 if (fix > 0 && (lat != 0 || lon != 0)) {
+                                    coord += lon + ",";
+                                    coord += lat + ",";
+                                    coord += alt + ",";
+                                     
+                                    connectionNodes += '\t\t\t<Placemark>\n'
+                                        + '\t\t\t\t<ExtendedData>\n' 
+                                        + '\t\t\t\t\t<SchemaData schemaUrl="#' +rover +'">\n'
+                                        + schemaData 
+                                        + '\t\t\t\t\t</SchemaData>\n'
+                                        + '\t\t\t\t</ExtendedData>\n'
+                                        + '\t\t\t\t<Point>\n'
+                                        + '\t\t\t\t\t<altitudeMode>clampToGround</altitudeMode>\n'    
+                                        + '\t\t\t\t\t<coordinates>' +coord.slice(0,-1) + '</coordinates>\n'
+                                        + '\t\t\t\t</Point>\n'
+                                        + '\t\t\t</Placemark>\n';
+                                 }
+                             }
+                         } else {
+                             descriptionNodes += addXMLNode("", obj, nodeJson, "\t\t\t\t");
+                         }
+                     }
+
+                     kmlString += '\t\t<Folder>\n'
+                             + '\t\t\t<name>Connection</name>\n'
+                             + '\t\t\t<Description>\n' + descriptionNodes + '\t\t\t</Description>\n'
+                             + connectionNodes
+                             + '\t\t</Folder>\n';
+
+                 }
+
+                 kmlString += '\t</Document>\n'
+                         + '</kml>\n';
+                 //console.log(kmlString);
+
+                 return kmlString;
+             }
+
+             function addXMLNode(nodeName, prop, value, tab)
+             {
+                 var node = "";
+                 if (nodeName.length > 0) {
+                     node = tab + '<' + nodeName +' name="' + prop +'">' + value +  '</' + nodeName + '>\n';
+                 } 
+                 else {
+                     node = tab + '<' + prop +'>' + value +  '</' + prop + '>\n';
+                 }
+                 return node;
+             }
+
+             function WriteToFile(kmlString, fileName)
+             {
+                var csvAsBlob = new Blob([kmlString], {type: 'text/plain'});
+                var downloadLink = document.createElement('a');
+                downloadLink.download = fileName;
+                if (window.URL !== null) {
+                    // Chrome allows the link to be clicked without actually adding it to the DOM
+                    downloadLink.href = window.URL.createObjectURL(csvAsBlob);
+                    downloadLink.target = '_blank';
+                } else {
+                    downloadLink.href = window.URL.createObjectURL(csvAsBlob);
+                    downloadLink.target = '_blank';
+                    downloadLink.style.display = 'none';
+                    // add .download so works in Firefox desktop.
+                    document.body.appendChild(downloadLink.download);
+                }
+                downloadLink.click();      
+                /*
+                // Save file
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(kmlString));
+                element.setAttribute('download', fileName);
+
+                element.style.display = 'none';
+                document.body.appendChild(element);
+
+                element.click();
+                document.body.removeChild(element);
+                */
+             }
+             
+            function getReport(date, data)
+            {
+                var MS = 0, FIXTIME = 0, DISTANCE = 0, DISTANCE2STAT = 0, CountSTAT = 0;
+
+                var rows = data["data"];
+
+                for (var track in rows) 
+                {
+                    var curTime = 0, prevTime = 0;
+                    var curLocation =  new L.latLng(0,0), prevLocation = new L.latLng(0,0);
+
+                    MS += (new Date(rows[track]["EndTime"]).getTime() - new Date(rows[track]["StartTime"]).getTime());
+                    prevTime = new Date(rows[track]["StartTime"]).getTime(); 
+                    /*
+                    if (rows[track]["FirstDistance"] && rows[track]["LastDistance"]) {
+                        DISTANCE2STAT += (rows[track]["FirstDistance"] + rows[track]["LastDistance"])/2;
+                        CountSTAT++;
+                    }
+                    */
+                    for (var obj in rows[track]) 
+                    {
+                        if (obj == "Connections") {
+                            var connNodes = rows[track][obj];
+                            var c = 0;
+
+                            for (var conn in connNodes) 
+                            {
+                                if (connNodes[conn]["Fix"] > 0) {
+                                    curTime = new Date(connNodes[conn]["Time"]).getTime();
+
+                                    if (connNodes[conn]["Fix"] > 3) {
+                                        FIXTIME += curTime - prevTime;
+                                    }
+
+                                    if ( connNodes[conn]["Lat"] > 0 && connNodes[conn]["Lon"] > 0) {
+                                        curLocation = new L.latLng( connNodes[conn]["Lat"], connNodes[conn]["Lon"]);
+                                    }
+
+                                    if (curLocation.lat > 0 && curLocation.lng > 0 && prevLocation.lat > 0 && prevLocation.lng > 0) {
+                                        DISTANCE += curLocation.distanceTo( prevLocation);
+                                    }
+
+                                    prevTime = curTime;
+                                    prevLocation = curLocation;
+                                    var nid = connNodes[conn]["Station"];
+                                    
+                                    if (c == 0 && sysnet && sysnet._layer && nid && nid.length > 0) {
+                                        sysnet._layer.eachLayer(function(layer) {
+                                            layer.eachLayer(function(l) {
+                                                var sid = l.feature.properties.stationid;
+                                                //console.log(l, connNodes[conn]);
+                                                if (sid && sid.length > 0 && parseInt( nid) > 0 && parseInt( sid) == parseInt( nid)) {
+                                                    DISTANCE2STAT += (curLocation.distanceTo( l.getLatLng()));
+                                                    CountSTAT++;
+                                                }
+                                            })
+                                        })
+                                        c++;
+                                    }
+                                }
+                            }                      
+                        }
+                    }
+
+                }
+                
+                var fixTime = (MS>0)?(FIXTIME / MS * 100).toFixed(2):0;
+                var hours = Math.abs( MS /1000 /60 /60); // moment.duration(MS).hours()
+                var speed = (hours>0)?(DISTANCE / 1000 / hours).toFixed(2):0;  
+                var dist2Stat = (CountSTAT>0)?(DISTANCE2STAT / CountSTAT /1000).toFixed():0;
+                var dist = (DISTANCE / 1000).toFixed(3);
+                
+                sysdata = {
+                    user : rover,
+                    datework : date,
+                    date: formatData(),
+                    company : $('#fcCompany').text(),
+                    member : $('#fcFullName').text(),
+                    typerover : '',
+                    typegps : '',
+                    duration : getTimeFormat(MS),
+                    rtkfixt : getTimeFormat(FIXTIME),
+                    rtkfixp : fixTime,
+                    lengthroute : dist,
+                    avgspeed : speed,
+                    avgdistanse : dist2Stat
+                }
+
+                var div = document.getElementById("report");
+                var str = "<table class='table table-striped'>"
+                    + "<tr><td>Дата :</td><td>" + date  + "</td><tr>"
+                    + "<tr><td>Время работы :</td><td>" + getTimeFormat(MS)  + "</td><tr>"
+                    + "<tr><td>Из него фиксированное решение (RTK) :</td><td>" + getTimeFormat(FIXTIME) + "</td><tr>"
+                    + "<tr><td>Из него фиксированное решение (RTK) (%) :</td><td>" + fixTime + "</td><tr>"
+                    + "<tr><td>Общая длина маршрута(км) :</td><td>" + dist + "</td><tr>";
+                    //+ "<tr><td>Средняя скорость(км/ч) :</td><td>" + speed  + "</td><tr>";
+                    
+                if (dist2Stat > 0)
+                    str += "<tr><td>Среднее расстояние до базовой станции (км) :</td><td>" +(dist2Stat > 0 ? dist2Stat : "") + "</td><tr>";
+                    
+                str += "<table>";                    
+                div.innerHTML = str;
+            }
+
+            function getTimeFormat(ms){
+                return moment.utc(ms).format('HH') + " ч." + moment.utc(ms).format('mm') + " мин. " + moment.utc(ms).format('ss') + " сек."; 
+            }
+            
+            function isIE() {
+                return navigator.appName == 'Microsoft Internet Explorer';
+            }
+
+            function preView(date) {
+                var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+                var html = document.getElementById("report").innerHTML;
+                var ie = isIE();
+                
+                    mywindow.document.write('<html><head>');
+                    mywindow.document.write('<title>systemnet</title>');
+                    mywindow.document.write('</head>');
+                    mywindow.document.write('<body style="padding:0px;margin:0px">');
+
+                    //mywindow.document.write("<div style='width:100%;height:100%;position:absolute;left:0px;top:0px;background:url(" +canvas.toDataURL() +") center center no-repeat;'>");
+                    mywindow.document.write("<div style='width:100%;height:100%;position:absolute;left:200px;top:0px'>");
+
+                    //if (ie)
+                        mywindow.document.write( html);
+                    //else
+                        //mywindow.document.write("<img src='" +canvas.toDataURL() +"' style='width:auto;height:auto;position:relative;top:50%;left:50%;transform: translateY(-50%) translateX(-50%);'/>");
+                    
+                    mywindow.document.write("</div>");
+
+                    mywindow.document.write("<div style='width:100%;height:100%;position:absolute;left:0px;top:0px'>");
+                    //mywindow.document.write("<img src='" +canvas.toDataURL() +"' style='width:100%;height:100%;position: relative; top: 50%; transform: translateY(-50%);'/>");
+                    mywindow.document.write('<h1>' +rover +'</h1>');
+                    mywindow.document.write('<h3>' +date +'</h3>');
+                    //mywindow.document.write("<img width='" +dimensions.x +"px' height='" +dimensions.y +"px' src='" +canvas.toDataURL() +"'/>");
+                    mywindow.document.write("</div>");
+                    /*
+                    mywindow.document.write("<div style='width:auto;height:auto;position:absolute;bottom:10px'>");
+                    mywindow.document.write('<h3>' +date +'</h3>');
+                    
+                    var img = document.createElement('img');
+                    img.src = document.getElementById( "cmLegend").toDataURL();
+                    
+                    img.onload = function(){
+                        mywindow.document.write( img.outerHTML);
+                        mywindow.document.write("</div>");
+
+                        mywindow.document.write('</body>');
+                        mywindow.document.write('</html>');
+
+                        mywindow.document.close(); // necessary for IE >= 10
+                        mywindow.focus(); // necessary for IE >= 10
+
+                        mywindow.print();
+                        mywindow.close();
+                    }
+                    */
+                    mywindow.document.write("</div>");
+
+                    mywindow.document.write('</body>');
+                    mywindow.document.write('</html>');
+
+                    mywindow.document.close(); // necessary for IE >= 10
+                    mywindow.focus(); // necessary for IE >= 10
+
+                    mywindow.print();
+                    mywindow.close();
+
+                return true;                
+            }
+
+            function printPdf(date) {
+                var data = JSON.stringify( sysdata,null,null);
+                var fileName = rover + "_" +date + ".pdf";
+                var req = new XMLHttpRequest();
+                req.open("POST", apiurl +"system/print", true);
+                req.responseType = "blob";
+                req.onreadystatechange = function () {
+                    if (req.readyState === 4 && req.status === 200) {
+                        if (typeof window.navigator.msSaveBlob === 'function') {
+                          window.navigator.msSaveBlob(req.response, fileName);
+                        } else {
+                          var blob = req.response;
+                          var link = document.createElement('a');
+                          link.href = window.URL.createObjectURL(blob);
+                          link.setAttribute('download', fileName);
+                          link.setAttribute('target', '_blank');
+                          // append the link to the document body
+                          document.body.appendChild(link);
+                          link.click();
+                        }
+                    }
+                };
+                req.send(data);
+            }
+        </script>
+
+        <script src="js/moment-with-locales.min.js"></script>
+        
+        <!-- pageContext.include( "footer.jsp"); -->
+    </body>
+</html>

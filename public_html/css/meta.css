@@ -1,0 +1,194 @@
+a { cursor: pointer;}
+.blog { FONT: 62.5%/1.2 Verdana, Helvetica, sans-serif; FONT-SIZE: 16px}
+.blogtxt { line-height: 150%; text-indent: 0px; margin-top: 0pt; margin-bottom: 0pt; text-align: left}
+.blogtxt p { margin-top: 10pt; margin-bottom: 10pt; }
+.leads { font: 15px/20px 'Open Sans', sans-serif; font-size: 18px; line-height: 30px;}
+.loading { background: url('../images/loading.gif') no-repeat; padding: 11px 0px 10px 30px;}
+
+.gray { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+
+.gray:hover, .gray:focus { 
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    filter: grayscale(0%);
+    filter: null;
+}
+
+.linearblue { 
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+    margin-bottom: 30px; 
+    font-size: 20px; 
+    color: #fff; 
+    background-color: #1ca8dd; 
+    background-image: linear-gradient(to bottom, #137499, #1ca8dd);
+    line-height: 40px;
+}
+
+.linearblue:hover { 
+    background-color: #FF8C00; 
+    background-image: linear-gradient(to bottom, #FF8C00, #FFA500);
+}
+
+.btn-orange { 
+    color: white;
+    padding: 12px 12px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-shadow: none;
+    background-color: #FF8C00; 
+    background-image: linear-gradient(to top, #FF8C00, #FFA500);
+    border: 0px solid #FF8C00;
+    border-bottom-color: #FFA500;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn-orange:hover, .btn-orange:focus { 
+    color: white;
+    text-decoration:none;
+    background-color: #1ca8dd; 
+    background-image: linear-gradient(to bottom, #137499, #1ca8dd);
+}
+
+.btn-blue { 
+    color: white;
+    padding: 12px 12px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-shadow: none;
+    background-color: #1ca8dd; 
+    background-image: linear-gradient(to bottom, #137499, #1ca8dd);
+    border: 0px solid #137499;
+    border-bottom-color: #1ca8dd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn-blue:hover, .btn-blue:focus { 
+    color: white;
+    text-decoration:none;
+    background-color: #FF8C00; 
+    background-image: linear-gradient(to top, #FF8C00, #FFA500);
+}
+
+.btn-red { 
+    color: white;
+    padding: 12px 12px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-shadow: none;
+    background-color: #FF6347; 
+    background-image: linear-gradient(to bottom, #F4500, #FF6347);
+    border: 0px solid #F4500;
+    border-bottom-color: #FF6347;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn-red:hover, .btn-red:focus { 
+    color: white;
+    text-decoration:none;
+    background-color: #FF8C00; 
+    background-image: linear-gradient(to top, #FF8C00, #FFA500);
+}
+
+@-webkit-keyframes move {
+    0% { transform: scale3d(1.01,1.01,1) }
+    25% { transform: scale3d(1.02,1.02,1) }
+    50% { transform: scale3d(1.03,1.03,1); }
+    75% { transform: scale3d(1.02,1.02,1) }
+    100% { transform: scale3d(1.01,1.01,1) }
+}
+
+.gray-move {
+    -webkit-transform: scale3d(1,1,1); 
+    transform: scale3d(1,1,1);
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+    -webkit-animation: move;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.gray-move:hover, .gray-move:focus { 
+    -webkit-transform: scale3d(1.02,1.02,1); 
+    transform: scale3d(1.02,1.02,1);
+}
+
+@-webkit-keyframes fade {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.carousel-box {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 15px;
+    background: #333333;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 767px) {
+    .carousel-box {
+        position: relative;
+    }    
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+    
+}
+
+.gfsel:before {
+    background: url(images/yes.svg) no-repeat 0 0;
+    display: inline-block;
+    content: "";
+    height: 18px;
+    margin: -2px 10px 0 0;
+    vertical-align: middle;
+    width: 18px;
+}
+
+@media only screen and (max-width : 640px) {
+    .gfsel:before {
+        background: url(images/yes.png) no-repeat 0 0;
+    }    
+}
+
+.navbar-fixed-top {
+    position: relative;
+}
+
+.gisfile-container {
+    padding-top: 30px; 
+    padding-bottom: 60px;
+}
+
+@media (max-width: 979px) {
+    .navbar-fixed-top {
+        margin-bottom: 0px;
+    }    
+    .gisfile-container {
+        padding-top: 0px; 
+        padding-bottom: 0px;
+    }
+}

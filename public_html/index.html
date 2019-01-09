@@ -1,0 +1,1118 @@
+<html>
+    <head>
+        <!-- START META -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="copyright" content="©2018 GISFile">
+        <meta name="date" content="2017-07-15T12:00:00+00:00">    
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+        <link type="text/css" href="css/jquery/jquery-easyui/cupertino/easyui.css" rel="stylesheet">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/bootstrap/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/bootstrap/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/bootstrap/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="img/bootstrap/apple-touch-icon-57-precomposed.png">
+        <link rel="stylesheet" media="screen" href="css/bootstrap/bootstrap.min.css">
+
+        <link type="text/css" href="css/shels/bsicons.css" rel="stylesheet">	
+        <script type="text/javascript" src="js/jquery/jquery-1.8.0.min.js"></script>    
+        <script type="text/javascript" src="js/jquery/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+        <link type="text/css" href="css/meta.css" rel="stylesheet">
+        <!-- END META -->
+		
+        <meta name="keywords" content="GISFile карта, карта земель, интерактивная карта, кадастровая карта, публичная карта, импорт файлов, проверка файлов, рельеф, отобразить на карте, найти места, посмотреть карты, вычислить расстояние, вычислить площадь, создать карту, создать интерактивную карту">
+        <meta name="description" content="GISFile публичная карта для отображения и проверки обменных файлов, отображение на карте собственных слоёв и карт, вычисление расстояний и площадей, создание интерактивных карт, карты для веб-решений">
+        <title>GISFile Карта</title>	
+        
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="css/leaflet.ie.css" /><![endif]-->
+        <script src="js/leaflet.min.js"></script>
+        
+        <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false&key=AIzaSyDq-siXPEyLx5s0H5l9KEM9sQsREH7e1EQ"></script>	
+        <script src="js/Google.js"></script>
+        <script src="js/Bing.js"></script>        
+        
+        <link type="text/css" href="css/leaflet.draw-src.css" rel="stylesheet" />                
+        <script src="js/leaflet.draw-src.js"></script>
+
+        <link type="text/css" href="css/L.Control.Gisfile.css" rel="stylesheet" />                
+        <script src="js/L.Control.Gisfile.js"></script>
+        
+        <script src="js/jquery.inputmask.min.js" type="text/javascript"></script>
+        <script src="js/l.control.geosearch.js"></script> 
+        <script src="js/l.geosearch.provider.openstreetmap.js"></script>
+        <script src="js/l.geosearch.provider.google.js"></script>
+        <script src="js/l.geosearch.provider.gisfile.js"></script>
+        <script src="js/l.geosearch.provider.ncs.js"></script>
+        <link rel="stylesheet" href="css/l.geosearch.css" />    
+        
+        <link type="text/css" href="css/leaflet.contextmenu.css" rel="stylesheet" />
+        <script src="js/leaflet.contextmenu.js"></script>
+        
+        <script src="js/leaflet.filelayer.js"></script>
+        <script src="js/leaflet.togeojson.js"></script>
+        <script src="js/jszip.min.js"></script> 
+        
+        <link type="text/css" href="css/gisfile.css" rel="stylesheet" />                
+        <script src="js/gisfile.js"></script>
+        
+        <link rel="stylesheet" href="css/leaflet.slidemenu.css" />
+        <script type="text/javascript" src="js/leaflet.slidemenu.js"></script>
+    </head>
+    
+    <body>
+        
+        <div id="map" style="width: 100%; height: 100%"></div>
+        
+        <script type="text/javascript">
+            var apiurl = '//gisfile.com/'; // The link of Node API
+            //var apiurl = 'http://localhost:8080/gisfile/';
+            var spider = '1'; // The list of users id
+            
+            var isFramed = true;  
+            var geojsonLayer = new L.geoJson();
+            var drawnItems = new L.FeatureGroup();
+            var map = L.map( 'map').setView([50.44,30.54],11);
+            
+            if (map.attributionControl) map.removeControl(map.attributionControl);
+            L.control.attribution( {position: 'bottomright'}).addAttribution( '<a href="http://gisfile.com/webmap.htm" title="GISFile">GISFile</a>').addTo(map);
+    
+            var osm, ggr, ggs, ggh, ggt, cad, cgr, m100, sat, ynd, yns, ynh, ynp, ynt, bir, bis, dgs, info, drawControl, gisControl, infoControl, waiting, relief, circle;
+            var base = 'base', overlay = 'overlay', waypoints=[], control, loading = undefined, viewer;
+            var drawnTrack = new L.FeatureGroup(), updatetrack, systemnet, slider;
+
+            var BlueIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/images/marker.png', 
+                                                              iconSize: [36, 36], iconAnchor: [ 36/2, 36/2], popupAnchor: [0, -36 +36/2], shadowSize: [0,0]}});
+                                                      
+            var GreyIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-grey.png', 
+                                                              iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var GreenIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-green.png', 
+                                                               iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var RedIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-red.png', 
+                                                             iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var YellowIcon = L.Icon.Default.extend({ options: { iconUrl: 'css/icons/icon-yellow.png', 
+                                                             iconSize: [36, 46], iconAnchor: [ 36/2, 46], popupAnchor: [0, -46 +46/2], shadowSize: [0,0]}});
+
+            var blueIcon = new BlueIcon();
+            var redIcon = new RedIcon();
+            var greenIcon = new GreenIcon();
+            var yellowIcon = new YellowIcon();
+            var greyIcon = new GreyIcon();
+            
+            var mobile = navigator && navigator.userAgent ? (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())) : true;
+
+            function image_resize() 
+            {
+                var $winheight = $(window).height() -2; 
+
+                if ($winheight < 10) 
+                   $winheight = $(document).height() -2; 
+
+                if ($winheight < 10) 
+                   $winheight = 768;
+
+                var $winwidth = $(window).width() -2; 
+
+                if ($winwidth < 10) 
+                   $winwidth = $(document).width() -2; 
+
+                if ($winwidth < 10) 
+                   $winwidth = 1024;
+                
+                $("#map").height( $winheight);
+                $("#map").width( $winwidth);
+            };
+
+            $(document).ready(function () 
+            {
+                image_resize();
+
+                $(window).bind("resize", function(){
+                    image_resize();
+                });
+            });
+
+            $(window).ready(function () 
+            {
+                image_resize();
+
+                $(window).resize(function () {
+                    image_resize();
+                });
+            });
+
+             $(window).load(function() { 
+                loaded();
+             });
+
+             function loaded() 
+             {
+                var ver = navigator.userAgent;
+                var gfm;
+                
+                if (base && base.length > 0) {
+                    gfm = base;
+                }
+                 
+                if (gfm != undefined && gfm.length > 0) 
+                {
+                    if (!(gfm.length == 0 || gfm == 'OpenStreetMap' || gfm == 'osm') && map.hasLayer( osm))
+                        map.removeLayer(osm);
+
+                    if (gfm == "Google Road" || gfm == 'ggr')
+                       map.addLayer(ggr);
+                    else if (gfm == "Google Satellite" || gfm == 'ggs') 
+                       map.addLayer(ggs);
+                    else if (gfm == "Google Hybrid" || gfm == 'ggh')
+                       map.addLayer(ggh);
+                    else if (gfm == "Google Terrain" || gfm == 'ggt')
+                       map.addLayer(ggt);
+                    else if (gfm == "Cadastre" || gfm == 'cad')
+                       map.addLayer(cad);
+                    else if (gfm == "Cad 100000" || gfm == 'm100')
+                       map.addLayer(m100);
+                    else if (gfm == "Cad Satellite" || gfm == 'sat')
+                       map.addLayer(sat);
+                    else
+                       map.addLayer(osm);
+                }
+                
+                if (overlay && overlay.length > 0) {
+                    if (overlay == "Cadastre" || overlay == 'cad')
+                        map.addLayer(cad);
+                }
+            }
+            
+            $(function()
+            {
+                // User Info
+                osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+                map.addLayer(osm);
+                
+                relief = L.tileLayer.gis('http://gisfile.com/layer/relief/{z}/{x}/{y}.png', {
+                            minZoom: 10, 
+                            //maxZoom: 14, 
+                            maxDrawZoom: 14, 
+                            maxNativeZoom: 14
+                         });
+                relief.setOpacity( 0.7);
+
+                ggr = new L.Google( 'ROADMAP');
+                ggs = new L.Google( 'SATELLITE');
+                ggh = new L.Google( 'HYBRID');
+                ggt = new L.Google( 'TERRAIN');
+                
+                var now = (new Date()).getTime();
+                cad = L.tileLayer.gis('http://gisfile.com/layer/cadmap/{z}/{x}/{y}.png?time=' +now, {
+                        minZoom: 5, 
+                        maxDrawZoom: 16, 
+                        maxNativeZoom: 16,
+                        attribution: '<a rel="nofollow" href="http://map.land.gov.ua">map.land.gov.ua</a>'});
+                    
+                cgr = L.tileLayer.gis('http://gisfile.com/layer/grunt/{z}/{x}/{y}.png?time=' +now, {
+                        minZoom: 5, 
+                        maxDrawZoom: 16, 
+                        maxNativeZoom: 16,
+                        attribution: '<a rel="nofollow" href="http://map.land.gov.ua">map.land.gov.ua</a>'});
+
+                /*    
+                ynd = new L.Yandex();
+                yns = new L.Yandex( 'satellite');
+                ynh = new L.Yandex( 'hybrid');
+                ynp = new L.Yandex( 'publicMap');
+                //ynt = new L.Yandex( "null", {traffic:true, opacity:0.8, overlay:true});
+                //'Google Terrain':ggt, 'Yandex Map':ynd, 'Yandex Satellite': yns, 'Yandex Hybrid': ynh, 'Yandex Public': ynp
+                */
+                //Bing Layers - Aerial, AerialWithLabels | Birdseye | BirdseyeWithLabels | Road
+                bir = new L.BingLayer("An7qgItN0Z37qcsnWrvuFEU4ynfdB4bE1efqa4tO3_cnI7z_u0MGOqfT_fSPgVlM", {type: 'Road'});
+                bis = new L.BingLayer("An7qgItN0Z37qcsnWrvuFEU4ynfdB4bE1efqa4tO3_cnI7z_u0MGOqfT_fSPgVlM", {type: 'Aerial'});
+                    
+                var baseLayers = {'OpenStreetMap':osm, 'Google Road':ggr, 'Google Satellite':ggs, 'Google Hybrid':ggh, 'Bing Road': bir, 'Bing Aerial': bis}; //, 'DigitalGlobe': dgs
+                var overlayLayers = {'Рельеф': relief, 'Почва': cgr, 'Кадастр': cad, 'Файлы': geojsonLayer};
+
+                // System Solutions
+                
+                    systemnet = new L.geoJson();
+                    systemusers = [];
+                    
+                    map.addLayer(systemnet);
+                    map.addLayer(drawnTrack);
+                    
+                    getSystemUsers();                    
+                    overlayLayers[ 'System Solutions'] = systemnet;
+        
+                control = L.control.layers.minimap( baseLayers, overlayLayers, {position: 'topright', collapsed: true, context: !mobile ? 'Карты' : ''}).addTo(map);                
+                geojsonLayer.addTo(map);
+                
+                // Set the button title text for the polygon button
+				
+                drawControl = new L.Control.Draw({
+                    draw: $.extend({position: 'topleft'}, getHandlersByContextType())
+                });
+                map.addControl(drawControl);     
+
+                function getHandlersByContextType() {
+                    var result = {
+                        marker: false,
+                        circle: false,
+                        ruler: {
+                            allowIntersection: false,
+                            showArea: true,
+                            showLength: true,
+                            showLabel: true,
+                            drawError: {
+                                color: '#e1e100',
+                                //message: 'DrawError'
+                            },
+                            shapeOptions: {
+                                color: '#FFC125',
+                                fill: false
+                            }
+                        },
+                        polygon: false,
+                        polyline: false,
+                        rectangle: false
+                    };
+                    return result;
+                }                        
+
+                // Initialize the GISFile control
+                gisControl = new L.Control.Gisfile({ position: 'topleft', home: false, search: true, searchTitle: 'Поиск'});
+                map.addControl( gisControl); 
+
+                L.control.mousePosition().addTo(map);
+                L.control.locate( {drawCircle: false, strings: { title: "LocateWhere", popup: "LocateDistance", outsideMapBoundsMsg: "LocateOutside"}, locateOptions: {maximumAge:60000, timeout:600000, enableHighAccuracy:true}}).addTo(map);
+
+                var search = new L.Control.GeoSearch({
+                    searchLabel: 'Найти',
+                    notFoundMessage: 'Не найдено',
+                    position: 'topleft', // !mobile ? 'topleft' : 'bottomleft',
+                    showMarker: true,
+                    contextmenu: true,
+                    selected: (overlay && overlay.length > 0 && (overlay == "Cadastre" || overlay == 'cad') ? 3 : 0),
+                    providers: [
+                                {name:'OpenStreetMap', provider: new L.GeoSearch.Provider.OpenStreetMap()},
+                                {name:'Google', provider: new L.GeoSearch.Provider.Google()},
+                                {name:'Кадастровая карта', provider: new L.GeoSearch.Provider.NCS()}
+                               ]
+                }).addTo(map);
+                
+                search._onSelect();
+                
+                map.on('click', getInfo);
+                
+                var style = {color:'red', opacity: 1.0, 'fillColor': 'none', weight: 2, clickable: false};
+                L.Control.fileLayerLoad({
+                    fitBounds: true,
+                    multiple: true,
+                    layerOptions: {style: style,
+                                   addToMap: false,
+                                   loadGeoJSON: loadGeoJSON,
+                                   loadCSV: loadCSV,
+                                   pointToLayer: function (data, latlng) {
+                                      return L.circleMarker(latlng, {style: style});
+                                   }}
+                }).addTo(map);
+                
+                window.lrmConfig = { };
+
+                image_resize();
+                map.invalidateSize();
+            })
+            
+            function onHome(e) {
+                window.open( "https://www.openstreetmap.org/#map=12/50.6830/30.0095&layers=D", "_blank");
+            }
+
+            function onSave(e) {
+                console.log('Save');
+            }
+                        
+            function onDelete(e) {
+                console.log( 'Delete');
+            }
+
+            function getGisJson(url)
+            {
+                var now = new Date();
+                var str = '?datetime=' +now.getTime();
+
+                jQuery.ajax({
+                    url: url +str, 
+                    dataType: 'text',
+                    success: function(response) { 
+                        var data = JSON.parse( response);
+                        geojsonLayer = L.geoJson( data).addTo(map);
+
+                        if (response.length > 2)
+                           map.fitBounds(geojsonLayer.getBounds());
+                    }
+                });
+            }
+            
+            function getInfo(e)
+            {      
+                var fdraw = drawControl != undefined && drawControl._toolbars && drawControl._toolbars.draw && drawControl._toolbars.draw._activeMode;
+
+                if (!fdraw && (map.hasLayer(relief) && e.target._zoom > 9)) 
+                {
+                    jQuery.ajax({
+                            url: 'http://gisfile.com/layer/relief/alt?lon=' +e.latlng.lng +"&lat=" +e.latlng.lat, 
+                            type: 'GET',
+                            async: true,
+                            dataType: 'text',
+                            success: function(response) {
+                                if (response) 
+                                {
+                                    var data = JSON.parse( response);
+
+                                    if (data.alt) 
+                                    {
+                                        var c = map.latLngToContainerPoint( e.latlng), s = 5, v = data.alt;
+
+                                        if (circle && map.hasLayer( circle)) 
+                                            map.removeLayer(circle);
+
+                                        if (v > 0) {
+                                            var radius = e.latlng.distanceTo( map.containerPointToLatLng( L.point( c.x, c.y +s)));
+                                            circle = L.circle( e.latlng, radius, {fillColor: '#FED976', weight: 1, opacity: 1, color: 'blue', fillOpacity: 0.5}).addTo(map);
+
+                                            var popup = L.popup( {minWidth : 300})
+                                                .setLatLng(e.latlng)
+                                                .setContent('<h4>Значения</h4>' +
+                                                            '<li><div class="label">Longitude</div>' +e.latlng.lng +'</li>' +
+                                                            '<li><div class="label">Latitude</div>' +e.latlng.lat +'</li>' +
+                                                            '<li><div class="label">Altitude</div>' +v +'m</li>')
+                                                .openOn(map);            
+                                        }
+                                    }
+                                }   
+                            }
+                        })
+                }
+				
+                if (!fdraw && ((map.hasLayer(cgr) && !map.hasLayer(cad) && e.target._zoom > 6) || (map.hasLayer(cad) && e.target._zoom > 12)) && waiting == null) 
+                {
+                    if (map.hasLayer(cgr) && !map.hasLayer(cad))
+                    {
+                        var marker = new L.Icon.Div( "<img src='css/images/spinner.gif'>", {iconSize: [12, 12], iconAnchor: [6,6]});
+                        waiting = new L.Marker( e.latlng, {icon: marker, draggable: false, opacity: 0.9}).addTo(map); //map.getCenter()
+                        var z = e.target._zoom < 18 ? e.target._zoom : 17;
+						
+						var crs = L.CRS.EPSG900913 || map.options.crs;
+						var nw = crs.project(e.latlng);
+						
+						var dataObj = {
+							x:nw.y,
+							y:nw.x,
+							zoom:z,
+							actLayers:['grunt']
+						}
+						
+						$.ajax({
+							url: 'http://map.land.gov.ua/kadastrova-karta/getobjectinfo', 
+							type: 'POST',
+							async: true,
+							dataType : "json",
+							data: dataObj,
+							success: function(response) {
+                                if (response && response.grunt) {
+                                    var str = $(response.grunt);
+                                    map.openPopup( '<h3>Грунт(и)</h3>' +str[0].innerHTML, e.latlng, {maxWidth: 380, className: 'leaflet-popup-content-body'});
+                                }
+                                
+                                map.removeLayer( waiting);
+                                waiting = null;
+							},
+							error : function(e) {
+								map.removeLayer( waiting);
+								waiting = null;
+							}
+						});
+						/*
+                        jQuery.ajax({
+                            url: 'http://gisfile.com/layer/grunt/search?x=' +e.latlng.lng +'&y=' +e.latlng.lat +'&z=' +z, 
+                            type: 'GET',
+                            async: true,
+                            dataType: 'text',
+                            success: function(response) 
+                            {
+                                if (typeof response == 'string') {
+                                    response = JSON.parse(response);
+                                }
+                                
+                                if (response && response.grunt) {
+                                    var str = $(response.grunt);
+                                    map.openPopup( '<h3>Грунт(и)</h3>' +str[0].innerHTML, e.latlng, {maxWidth: 380, className: 'leaflet-popup-content-body'});
+                                }
+                                
+                                map.removeLayer( waiting);
+                                waiting = null;
+                            },
+                            error : function(e) {
+                                map.removeLayer( waiting);
+                                waiting = null;
+                            }
+                        });
+						*/
+                    }
+
+                    if (map.hasLayer(cad)) 
+                    {
+                        var marker = new L.Icon.Div( "<img src='css/images/spinner.gif'>", {iconSize: [12, 12], iconAnchor: [6,6]});
+                        waiting = new L.Marker( e.latlng, {icon: marker, draggable: false, opacity: 0.9}).addTo(map); //map.getCenter()
+                        var z = e.target._zoom < 18 ? e.target._zoom : 17;
+                    
+                        var crs = L.CRS.EPSG900913 || map.options.crs;
+                        var nw = crs.project(e.latlng);
+                        
+                        var dataObj = {
+                            x:nw.y,
+                            y:nw.x,
+                            zoom:z,
+                            actLayers:['kadastr']
+                        }
+                        
+                        $.ajax({
+                            url: 'http://map.land.gov.ua/kadastrova-karta/getobjectinfo', 
+                            type: 'POST',
+                            async: true,
+                            dataType : "json",
+                            data: dataObj,
+                            success: function(response) {
+                                if (response && response.dilanka) {
+                                    var str = $(response.dilanka);
+                                    str.find("a").parents("li").each(function () { 
+                                        if (this.innerHTML.indexOf('cad_num?cad_num') == -1) {
+                                            this.innerHTML = ""; 
+                                        }
+                                    })
+                                    str.find("div").each(function () { 
+                                        if (this.className == 'hidden') { this.className = ''; this.style.fontSize = '12px'; this.style.left = '10px';}
+                                    })
+                                    
+                                    map.openPopup( '<h3>Ділянки(а)</h3>' +str[0].innerHTML, e.latlng, {maxWidth: 380, className: 'leaflet-popup-content-body'});
+                                }
+                                
+                                map.removeLayer( waiting);
+                                waiting = null;
+                            },
+                            error : function(e) {
+                                map.removeLayer( waiting);
+                                waiting = null;
+                            }
+                        });
+						/*	
+                        jQuery.ajax({
+                            url: 'http://gisfile.com/layer/cadmap/search?x=' +e.latlng.lng +'&y=' +e.latlng.lat +'&z=' +z, 
+                            type: 'GET',
+                            async: true,
+                            dataType: 'text',
+                            success: function(response) 
+                            {
+                                if (typeof response == 'string') {
+                                    response = JSON.parse(response);
+                                }
+
+                                if (response && response.dilanka) {
+                                    var str = $(response.dilanka);
+                                    str.find("a").parents("li").each(function () { 
+                                        if (this.innerHTML.indexOf('cad_num?cad_num') == -1) {
+                                            this.innerHTML = ""; 
+                                        }
+                                    })
+                                    str.find("div").each(function () { 
+                                        if (this.className == 'hidden') { this.className = ''; this.style.fontSize = '12px'; this.style.left = '10px';}
+                                    })
+                                    
+                                    map.openPopup( '<h3>Ділянки(а)</h3>' +str[0].innerHTML, e.latlng, {maxWidth: 380, className: 'leaflet-popup-content-body'});
+                                }
+                                
+                                map.removeLayer( waiting);
+                                waiting = null;
+                            },
+                            error : function(e) {
+                                map.removeLayer( waiting);
+                                waiting = null;
+                            }
+                        })
+						*/
+                    }
+                }
+            }
+
+            function loadGeoJSON(that, content) 
+            {
+                if (typeof content == 'string') {
+                    content = JSON.parse(content);
+                }
+                
+                var layer = L.geoJson( content, { style: style, onEachFeature: onEachFeature }).addTo(geojsonLayer); //L.geoJson(content, that.options.layerOptions);
+
+                if (layer.getLayers().length === 0) {
+                    throw new Error('GeoJSON has no valid layers.');
+                }
+                
+                return layer;
+            }
+            
+            function loadCSV(that, content) 
+            {
+                if (content.length > 1) 
+                {
+                    for (var rows in content)
+                    { 
+                        var row = content[ rows];
+                        var data, lat = null, lng = null;
+
+                        for (var item in row) 
+                        {
+                            var s = item.trim().toLowerCase();
+                            var v = row[ item].split( '\"');
+                            
+                            if (['"latitude"', '"lat"'].indexOf(s) >= 0) {
+                                if (v.length == 3)
+                                    lat = parseFloat( v[ 1]);
+                                else
+                                    lat = parseFloat( v[ 0]);
+                            }
+                            
+                            if (['"longitude"', '"lon"', '"lng"'].indexOf(s) >= 0) {
+                                if (v.length == 3)
+                                    lng = parseFloat( v[ 1]);
+                                else
+                                    lng = parseFloat( v[ 0]);
+                            }
+                        };
+
+                        if (lat != undefined && lng != undefined) 
+                        {
+                            var xy = new L.LatLng( lat, lng);
+                            //var layer = L.marker([xy.lng, xy.lat], {icon: blueIcon}).addTo(geojsonLayer);
+
+                            data = {
+                                "type": "Feature",
+                                "id":0,
+                                "properties": {},
+                                "geometry": {
+                                    "type": "MultiPoint",
+                                    "coordinates": [[xy.lng, xy.lat]]}
+                            };   
+                        }
+
+                        if (data != undefined) 
+                        {
+                            for (var field in row)
+                            { 
+                                var value = row[ field];
+
+                                if (value.length > 0)
+                                    data[ "properties"][ field.toLowerCase()] = value;
+                            }
+
+                            L.geoJson( data, { style: style, onEachFeature: onEachFeature }).addTo(geojsonLayer);
+                        }
+                    }
+                    
+                    if (geojsonLayer) {
+                        map.fitBounds( geojsonLayer.getBounds());
+                    }
+                }
+            }
+            
+            var styleLayer = {
+                    fillColor: 'none',
+                    weight: 3,
+                    opacity: 0.5,
+                    color: 'blue',
+                    dashArray: '',
+                    fillOpacity: 0.3
+                };
+
+            function style(feature) 
+            {
+                if (feature.styles) {
+                    if (feature.styles.fill == "false")
+                        feature.styles.fillColor = 'none';
+                    if (feature.styles.stroke == "false")
+                        feature.styles.color = 'none';
+                    return feature.styles;
+                } else
+                    return styleLayer;
+            }
+
+            function onEachFeature(feature, layer) 
+            {                
+                var items = getItems( feature.properties);
+                var popupContent = "<div class='modal-body' style='width: 287px'>" +
+                                   "<strong>Values:</strong><br>" + 
+                                   items.join( "") +
+                                   "</div>";
+                               
+                var type = layer.feature.geometry.type;
+
+                if (type == 'Marker' || type == 'MultiPoint' || type == 'Point') 
+                {
+                    if (layer._layers)
+                       layer._layers[ layer._leaflet_id -1].setIcon( blueIcon);
+                    else
+                       layer.setIcon( blueIcon);
+                }              
+
+                if (feature.properties && feature.properties.popupContent) {
+                    layer.bindPopup(feature.properties.popupContent);
+                }
+
+                layer.bindPopup(popupContent);
+            }     
+
+            function getItems(data) 
+            {
+                var items = [];
+                $.each( data, function( key, val ) {  
+                  items.push( "<txt id='" + key + "'>" +key +" = "+ val + "</txt><br>" );
+                });
+
+                return items;
+            }
+            
+            // System Solutions
+            
+            function update()
+            {
+                if (drawnTrack) {
+                    if (map.getZoom() > 12) {
+                        if (!map.hasLayer(drawnTrack)) map.addLayer(drawnTrack);
+                        getSystemTracks();
+                    }
+                    if (map.getZoom() <= 12 && map.hasLayer(drawnTrack))
+                    {
+                        map.removeLayer(drawnTrack);
+                    }                  
+                }
+                
+                if (updatetrack && (new Date().getTime() -updatetrack) > 1000 *60) {
+                    getSystemNet();
+                }
+            }
+            
+            function getSystemUsers() {
+                var url = apiurl +'system/group/users';
+                
+                if (spider.length > 0)
+                    url = apiurl +'system/user/' +spider +'/list';
+                
+                jQuery.ajax({
+                    url: url,
+                    //contentType: "application/json",
+                    dataType: 'text',
+                    async: true,
+                    success: function(content) 
+                    {
+                        if (content) {
+                            if (typeof content == 'string') {
+                                content = JSON.parse(content);
+                            }
+
+                            var str = "";
+
+                            for (var g in content) {
+                                var group = content[g];
+                                
+                                if (group.users) {                                    
+                                    for (var u in group.users) {
+                                        var rover = group.users[ u];                                    
+                                        var color = "black";
+                                        var value = rover.firstname;
+                                        var note = rover.lastname;
+                                        if (note && note.length > 0) value += " " +note;
+                                        
+                                        systemusers[ rover.id] = rover;
+                                        var style = "style='color:" +color +"'"; 
+                                        str += "<tr><td id='sys_" +rover.username +"'" +style +" onclick='systemView(\"" +rover.username +"\")'>" +value +"</td>" +
+                                               "<td><a href='system.html?user=" +rover.username +"' title='Открыть' target='_blank'><img src='img/view.png' style='max-width: 20px; max-height: 20px'></a>" +
+                                               "</td></tr>";
+                                    }
+                                }
+                                
+                                if (spider.length > 0) {
+                                    var rover = group;                                    
+                                    var color = "black";
+                                    var value = rover.firstname;
+                                    var note = rover.lastname;
+                                    if (note && note.length > 0) value += " " +note;
+
+                                    systemusers[ rover.id] = rover;
+                                    var style = "style='color:" +color +"'"; 
+                                    str += "<tr><td id='sys_" +rover.username +"'" +style +" onclick='systemView(\"" +rover.username +"\")'>" +value +"</td>" +
+                                           "<td><a href='system.html?user=" +rover.username +"' title='Открыть'><img src='img/view.png' style='max-width: 20px; max-height: 20px'></a>" +
+                                           "</td></tr>";
+                                }
+                            }
+                            
+                            slider = L.control.slideMenu({barClass : 'leaflet-car-slidemenu', title : "Пользователи", text: '<table id="pgUsers" class="table table-striped table-condensed" style="width:295px;">' +str +'</table>'}).addTo(map);
+                            getSystemNet();
+                        }
+                    }
+                });
+            }
+            
+            function systemView(rover) {
+                if (systemnet) {
+                    systemnet.eachLayer(function (layer) {
+                        layer.eachLayer(function (m) {
+                            if (m.feature && m.feature.properties && m.feature.properties.roverusername && m.feature.properties.roverusername == rover) {
+                                var loc = m.getLatLng();
+                                map.setView([loc.lat, loc.lng], map.getZoom() < 5 ? 10 : map.getZoom()); 
+                            }
+                        })
+                    })
+                }
+            }
+            
+            function getSystemNet(e) {
+                updatetrack = new Date().getTime();
+                var url = apiurl +'system/group/connections';
+                
+                if (spider.length > 0)
+                    url = apiurl +'system/connection/' +spider +'/list';
+                
+                jQuery.ajax({
+                    url: url, 
+                    //contentType: "application/json",
+                    dataType: 'text',
+                    async: true,
+                    success: function(content) 
+                    {
+                        if (content) {
+                            if (typeof content == 'string') {
+                                content = JSON.parse(content);
+                            }
+                            
+                            for (var g in content) {
+                                var group = content[g];
+                                
+                                if (group.users) {
+                                    var users = {};
+                                    
+                                    for (var u in group.users) {
+                                        var rover = group.users[ u];
+                                        
+                                        if (rover.data_latest_connections && rover.data_latest_connections.length > 0) {
+                                            var con = rover.data_latest_connections[ rover.data_latest_connections.length -1];
+                                            
+                                            for (var lc = rover.data_latest_connections.length -1; lc >= 0; lc--) {
+                                                var rlc = rover.data_latest_connections[ lc];
+                                                
+                                                if (rlc.latitude > 0 && con.longitude > 0) {
+                                                    con = rlc;
+                                                    //console.log( con);
+                                                    break;
+                                                }
+                                            }
+                                            
+                                            if (con.latitude > 0 && con.longitude > 0) {
+                                                //console.log( rover.data_latest_connections);
+                                                
+                                                var lat = con.latitude, lon = con.longitude, props = con;
+                                                props.rid = rover.id; // rover.credentialid
+                                                props.roverusername = systemusers[ rover.id].username;
+                                                
+                                                if (lat && lon) {
+                                                    var d = [{"type":"Feature","geometry":{"type":"Point","coordinates":[lon, lat]},"properties": props}];
+                                                    var loc = new L.LatLng( lat, lon);
+                                                    var found = false;
+                                                    
+                                                    if (systemnet) {
+                                                        systemnet.eachLayer(function (layer) {
+                                                            layer.eachLayer(function (m) {
+                                                                if (m.feature && m.feature.properties && m.feature.properties.roverusername && m.feature.properties.roverusername == props.roverusername) {
+                                                                    
+                                                                    var prior = m.getLatLng();
+                                                                    var locations = m.feature.locations;
+                                                                    if (locations && locations.length > 0) {
+                                                                        if (prior) {
+                                                                            var d = [{"type":"Feature","geometry":{"type":"LineString","coordinates":[[prior.lng, prior.lat],[loc.lng, loc.lat]]},"properties": props}];
+                                                                            drawTrack(d);
+                                                                        }
+                                                                        locations.push( props);
+                                                                    }
+                                                                   
+                                                                    var report = props, icon = greyIcon, color = "grey";
+                                                                    if (report.positionfix && report.time) {
+                                                                        var date = new Date( report.time); 
+                                                                        var now = new Date();
+
+                                                                        var days = now.getDate() -date.getDate();
+                                                                        var hours = now.getHours() -date.getHours();
+                                                                        var fix = report.positionfix;
+
+                                                                        if (days == 0 && hours == 0) {
+                                                                            if (fix > 3) {
+                                                                                icon = greenIcon; color = "green";
+                                                                            } else if (fix == 2) {    
+                                                                                icon = yellowIcon; color = "yellow";
+                                                                            } else {
+                                                                                icon = redIcon; color = "red";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    
+                                                                    var name = "sys_" +report.roverusername;
+                                                                    var rover = document.getElementById(name);
+                                                                    if (rover) rover.style.color = color;                                                                    
+
+                                                                    m.setIcon( icon);
+                                                                    m.setLatLng([loc.lat, loc.lng]).update(); 
+                                                                    found = true;
+                                                                }
+                                                            })
+                                                        })
+                                                    }
+                                                    
+                                                    if (!found) {
+                                                        var layer = L.geoJson( d, {onEachFeature: onSystemFeatures});
+                                                        systemnet.addLayer(layer);
+                                                    }
+                                                    
+                                                    users[ props.rid] = found;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    if (systemnet) {
+                                        systemnet.eachLayer(function (layer) {
+                                            layer.eachLayer(function (m) {
+                                                if (m.feature && m.feature.properties && m.feature.properties.rid && users[ m.feature.properties.rid] == undefined) {
+                                                    if (m._layers)
+                                                       m._layers[ m._leaflet_id -1].setIcon( greyIcon);
+                                                    else
+                                                       m.setIcon( greyIcon);  
+                                                    
+                                                    var name = "sys_" +m.feature.properties.roverusername;
+                                                    var rover = document.getElementById(name);
+                                                    if (rover) rover.style.color = "grey";
+                                                }
+                                            })
+                                        })
+                                    }
+                                }
+                            }
+                            
+                            setTimeout( "getSystemNet()", 1000 *10);
+                        }
+                    },
+                    error : function(e) {
+                        setTimeout( "getSystemNet()", 1000 *10);
+                    }
+                });
+            }
+            
+            function getItem( name, value) {
+                //return '<li><div class="label">' +name +':</div><span><strong>' +value +'</strong></span></li>';
+                return '<tr><td><b>' +name +':</b></td><td><b>' +value +'</b></td></tr>';
+            } 
+            
+            function onSystemFeatures(feature, layer) {
+                //var items = getItems( feature.properties);
+                var pro = feature.properties;
+                var str = "";
+
+                str += '<table>'
+                if (pro.roverusername)          str += getItem( "Логин", pro.roverusername); 
+                if (pro.roveruserdetail)        str += getItem( "Представитель", pro.roveruserdetail); 
+                if (pro.roverusercompany)       str += getItem( "Компания", pro.roverusercompany); 
+                if (pro.starttimeconnection)    {
+                    var d = new Date( pro.starttimeconnection);
+                    str += getItem( "Время подключения", d.toLocaleDateString() +' ' +d.toLocaleTimeString()); 
+                }
+                //if (pro.firstrefstatid)         str += getItem( "Точка подключения", pro.firstrefstatid); 
+                if (pro.firstdistancetostat)    str += getItem( "Расстояние до станции", pro.firstdistancetostat); 
+                str += '</table><br>';
+                
+                var target = "target='_blank'";
+                if (spider.length > 0) target = '';
+                
+                var popupContent = "<div class='modal-body' style='width: 297px; padding: 5px;'>" +
+                                   str + 
+                                   "<a href='" +apiurl +"system/" +pro.roverusername +"' class='btn btn-info' style='color: white' " +target +">Открыть детали</a>" +
+                                   "</div>";
+                               
+                var type = layer.feature.geometry.type;
+
+                if (type == 'Marker' || type == 'MultiPoint' || type == 'Point') 
+                {
+                    var icon = greyIcon, color = "grey";
+                    var report = feature.properties;
+                    
+                    if (report.positionfix && report.time) {
+                        var date = new Date( report.time); 
+                        var now = new Date();
+                        
+                        var days = now.getDate() -date.getDate();
+                        var hours = now.getHours() -date.getHours();
+                        var fix = report.positionfix;
+                        
+                        if (days == 0 && hours == 0) {
+                            if (fix > 3) {
+                                icon = greenIcon; color = "green";
+                            } else if (fix == 2) {    
+                                icon = yellowIcon; color = "yellow";
+                            } else {
+                                icon = redIcon; color = "red";
+                            }
+                        }
+                    }
+                    
+                    var name = "sys_" +feature.properties.roverusername;
+                    var rover = document.getElementById(name);
+                    if (rover) rover.style.color = color;
+                    
+                    if (layer._layers)
+                       layer._layers[ layer._leaflet_id -1].setIcon( icon);
+                    else
+                       layer.setIcon( icon);
+                }                        
+
+                if (feature.properties && feature.properties.popupContent) {
+                    layer.bindPopup(feature.properties.popupContent);
+                }
+
+                layer.bindPopup(popupContent);
+            }
+            
+            function getSystemTracks() {
+                if (systemnet) {
+                    systemnet.eachLayer(function (layer) {
+                        layer.eachLayer(function (object) {
+                            if (map.getBounds().contains( object.getLatLng())) {
+                                var uid = "roverusername";
+                                if (object && object.feature && object.feature.properties && object.feature.properties[ uid]) {
+                                    if (!object.feature.locations) {
+                                        object.feature.locations = [];
+                                        getSystemConnections( object.feature.locations, object.feature.properties[ uid]);
+                                    }
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+            
+            function getSystemConnections(locations, e, i) {
+                var limit = 10000;
+                var size = "?limit=" +limit;
+                var next = "";
+                
+                if (i != undefined && i > 0) {
+                    next = "&skip=" +(i *limit);
+                }
+                
+                jQuery.ajax({
+                    url: apiurl +'system/user/' +e +'/connections' +size +next, 
+                    //contentType: "application/json",
+                    dataType: 'text',
+                    async: true,
+                    success: function(response) 
+                    {
+                        if (response) 
+                        {
+                            var data = JSON.parse( response);
+                            var IsNextPage = true;
+                            
+                            if (data.length > 0) {
+                                var prior;
+
+                                if (locations.length > 0)
+                                    prior = locations[ locations.length -1]; 
+
+                                for (var p in data)  {
+                                    var props = data[p];
+                                         
+                                    if (props.id && props.latitude && props.longitude && props.time) {
+                                        var d = new Date( props.time); 
+                                        var n = new Date(); 
+                                        
+                                        //if (d.getFullYear() == n.getFullYear() && d.getMonth() == n.getMonth() && d.getDate() == n.getDate()) {
+                                            if (prior) {
+                                                //var d = [{"type":"Feature","geometry":{"type":"LineString","coordinates":[[prior.longitude *180/Math.PI, prior.latitude *180/Math.PI],[props.longitude *180/Math.PI, props.latitude *180/Math.PI]]},"properties": prior}];
+                                                var d = [{"type":"Feature","geometry":{"type":"LineString","coordinates":[[prior.longitude, prior.latitude],[props.longitude, props.latitude]]},"properties": prior}];
+                                                drawTrack(d);
+                                            }
+                                            //if (i == undefined && p == 0) hubs[ hub] = props; 
+                                            prior = props;
+                                            locations.push( props);
+                                        //} else {
+                                        //    IsNextPage = false;
+                                        //    break;
+                                        //}
+                                    }
+                                }
+                                //console.log(data);
+                            }
+                            
+                            //if (IsNextPage != undefined && Boolean( IsNextPage)) {
+                            //    getSystemConnections(locations, e, data.PageIndex +1);
+                            //}
+                        }    
+                    }
+                });                           
+            }
+            
+            function drawTrack(d) {
+                var props = d[0].properties;
+                var s = {weight: 2, opacity: 0.5, color: 'blue'};
+
+                if (props.positionfix && props.positionfix > 0) {
+                    if (props.positionfix > 3) s.color = 'green';
+                    else if (props.positionfix == 2) s.color = 'yellow';
+                    //else if (props.positionfix <= 0) s.color = 'grey';
+                    else s.color = 'red';
+            
+                    var layer = L.geoJson( d, {style: s, onEachFeature: function (feature, layer) {
+                        var items = getTitles( feature.properties);
+
+                        var target = "target='_blank'";
+                        if (spider.length > 0) target = '';
+
+                        var popupContent = "<div class='modal-body' style='width:260px'>" +
+                                           "<strong>Значения:</strong><br>" + 
+                                           "<p>" +items.join( "") +"</p>" +
+                                           "<a href='" +apiurl +"system/" +props.username +"' class='btn btn-info' style='color: white' " +target +">Открыть</a>" +
+                                           "</div>";
+
+                        if (feature.properties && feature.properties.popupContent) {
+                            layer.bindPopup(feature.properties.popupContent);
+                        }
+
+                        layer.bindPopup(popupContent);
+                    }});
+
+                    drawnTrack.addLayer(layer);
+                }                                               
+            }
+            
+            function getTitles(data) 
+            {
+                var items = [];
+                $.each( data, function( key, val ) {  
+                    items.push( key +" : " +val +"<br>" );
+                });  
+
+                return items;
+            }
+        </script>
+                                
+    </body>
+    
+    <script src="js/proj4.js"></script> 
+    <link rel="stylesheet" href="css/leaflet/Control.Window.css" />        
+    <script src="js/leaflet/Control.Window.js"></script>         
+</html>

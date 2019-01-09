@@ -1,0 +1,26 @@
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 11pt; /* Размер шрифта в пунктах */ 
+    color: rgb(0,0,0);
+    background-color: #f2f5f7;
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+}
+.shels-layers .tree-node {
+    height:70px;
+}
+.datagrid-row-editing input  {
+    height: 15px;
+}
+#d_layerCreate .tree-node {
+    height:23px;
+}
+.combo-text{
+    margin-bottom: 0px !important;
+    padding-left: 1px !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    padding-right: 10px !important;
+}
